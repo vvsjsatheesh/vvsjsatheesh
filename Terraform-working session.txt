@@ -1,0 +1,4477 @@
+Day - 1 - Wednesday [7/06/2023]
+---------------------------------
+https://developer.hashicorp.com/terraform/downloads
+------------------------------------------------------------
+sudo apt update
+sudo apt install awscli
+
+sudo aws configure
+sudo aws ec2 describe-instances
+
+https://github.com/amitopenwriteup/terraform
+
+
+sudo apt update
+sudo apt install  software-properties-common gnupg2 curl
+curl https://apt.releases.hashicorp.com/gpg | gpg --dearmor > hashicorp.gpg
+sudo install -o root -g root -m 644 hashicorp.gpg /etc/apt/trusted.gpg.d/
+sudo apt install terraform
+
+------------------------------------------------------
+
+
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform
+
+=============================================================================
+Day - 2 - Thrusday [8/06/2023]
+-----------------------------
+=======================
+provider "aws" {
+  access_key = "AKIA43KKKGRBXH7S5HHU"
+  secret_key = "t+BbkEPyYnZGA1Na40st1zRf5aMOWt2iH9aEHQK8"
+  region     = "us-west-2"   # Replace with your desired AWS region
+}
+
+ 
+
+resource "aws_instance" "example" {
+  ami           = "ami-066fdb387a3b86d3d"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+
+ 
+
+  tags = {
+    Name        = "ExampleInstance"
+    Environment = "Production"
+  }
+}
+
+------------------------------------------
+
+sudo aws ec2 describe-images --owners amazon --filters "Name=name,Values=amzn2-ami-hvm-*" "Name=root-device-type,Values=ebs" --query 'Images[0].ImageId' --output text
+
+
+ubuntu@ip-172-31-64-249:/aws$ sudo aws ec2 describe-images --owners amazon --filters "Name=name,Values=amzn2-ami-hvm-*" "Name=root-device-type,Values=ebs" --query 'Images[0].ImageId' --output text
+ami-060f2b16a4928ab66
+ubuntu@ip-172-31-64-249:/aws$
+----------------------------------------
+ubuntu@ip-172-31-64-249:/aws$
+ubuntu@ip-172-31-64-249:/aws$ aws ec2 describe-key-pairs
+{
+    "KeyPairs": [
+        {
+            "KeyPairId": "key-056799ec298d60885",
+            "KeyFingerprint": "a1:87:f4:38:1a:dc:52:92:96:ea:3c:ad:f8:00:fb:02:a5:d9:5f:05",
+            "KeyName": "mykey",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-03fa07e8864c772d3",
+            "KeyFingerprint": "3a:00:29:04:10:a4:46:0a:b3:9c:27:1c:f1:99:82:ef:65:d5:45:78",
+            "KeyName": "rsaRavitemp",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-066720c617cfc13d6",
+            "KeyFingerprint": "4d:ee:a6:26:7b:e8:89:22:de:87:ae:2b:18:a9:dc:2f:97:79:73:ab",
+            "KeyName": "Terraform",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0c7877c9fd45d1578",
+            "KeyFingerprint": "50:91:c8:6e:76:09:0d:25:9b:c8:20:de:b8:47:bc:cc:94:f1:ad:79",
+            "KeyName": "vijayterraformkey",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0f961a7f610062aab",
+            "KeyFingerprint": "cc:1a:99:a3:ca:d6:49:be:68:86:2b:7d:14:a7:8a:aa:c6:1e:88:74",
+            "KeyName": "awstera",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-075a7ae682e253511",
+            "KeyFingerprint": "99:fa:10:d2:bc:b6:4f:4c:ac:2c:8c:46:b5:65:25:7b:14:5a:ca:a1",
+            "KeyName": "dineubuntu",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0d6ff7c122e86297c",
+            "KeyFingerprint": "cd:01:e3:34:9f:72:a9:ca:aa:ef:4d:45:02:23:8b:30:9c:bd:0d:d2",
+            "KeyName": "mytraining1",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-080b93f9774e68d27",
+            "KeyFingerprint": "5d:8c:11:0b:9f:db:61:a5:0e:b5:22:71:fb:42:47:a2:f9:e6:32:00",
+            "KeyName": "newtrianingkey1",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-09b9d5d47768ffca1",
+            "KeyFingerprint": "1c:a8:bd:77:f6:ba:1b:60:07:86:5e:03:a6:71:2d:68:99:26:e9:fd",
+            "KeyName": "susil_terraform",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-002a35276595c0139",
+            "KeyFingerprint": "1f:f8:7d:54:c7:e9:2e:92:40:8f:37:f4:5e:3f:70:c3:c0:33:08:20",
+            "KeyName": "myec2key",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0d405789248a1c391",
+            "KeyFingerprint": "ed:9d:1e:67:8b:7a:74:0b:27:53:2b:a4:8b:3e:ef:12:a8:26:c0:22",
+            "KeyName": "terraform",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0980f915744e34fdb",
+            "KeyFingerprint": "ac:5b:5e:37:c7:25:33:32:71:51:59:b6:1d:81:8e:88:58:df:76:4d",
+            "KeyName": "mytest",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0ef307569b410f033",
+            "KeyFingerprint": "68:a0:57:7e:45:b6:44:8b:57:9a:81:bb:34:79:df:87:15:e7:20:94",
+            "KeyName": "keypair",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-03c7e74fca35a6c58",
+            "KeyFingerprint": "b3:45:68:5d:c0:7c:d5:09:34:37:e6:65:10:e4:38:29:91:82:ab:24",
+            "KeyName": "mytraining",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0737b1f52c0e9c51a",
+            "KeyFingerprint": "eb:66:97:6b:08:e6:c0:98:bc:52:5b:04:5c:1a:54:1f:cb:78:50:80",
+            "KeyName": "msrajukey",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0c254ad391c03363f",
+            "KeyFingerprint": "f9:20:2f:10:c9:a7:cf:fc:27:5a:af:a0:2d:8d:ba:84:73:51:73:14",
+            "KeyName": "my training",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0af108f1a703c8379",
+            "KeyFingerprint": "6d:4b:60:f8:c2:9e:f4:a3:22:29:b2:69:80:2d:a5:18:3c:0c:39:e9",
+            "KeyName": "mytraining7",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-08e6d3c7bf4f964e3",
+            "KeyFingerprint": "4d:14:e3:11:6d:b3:d6:71:2e:18:11:a2:91:83:b7:5b:9b:9e:1f:b6",
+            "KeyName": "Terraformtraining",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-07c25aace59c01aca",
+            "KeyFingerprint": "29:f2:df:1b:5d:d4:e1:a6:41:9c:f2:37:22:11:e8:28:0a:e1:93:25",
+            "KeyName": "vijayterraformTrainingkey",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-03b43a77eb0abfebd",
+            "KeyFingerprint": "35:bf:54:b7:e1:5f:e8:e5:d4:96:24:0e:b1:4f:8a:36:35:f5:9f:70",
+            "KeyName": "terraform-key",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0ac7f1fdb1f617643",
+            "KeyFingerprint": "86:a8:ca:43:b1:e7:8b:25:0d:98:f2:4a:77:e7:1e:d3:04:46:40:11",
+            "KeyName": "dineterra",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-03ff7b1cd77e6136d",
+            "KeyFingerprint": "0f:66:c5:a5:07:b9:b7:f0:6f:cc:0d:9a:3f:43:e9:d3:07:d7:0b:e7",
+            "KeyName": "Aishee_newkey",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-085ba16f4cdcdb0c2",
+            "KeyFingerprint": "d1:38:a4:d9:31:b3:f0:1a:ab:ec:9c:fd:c1:3a:a4:35:ea:5b:27:88",
+            "KeyName": "TerraTest-Key",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-06da71032ccf54cf4",
+            "KeyFingerprint": "92:d2:43:d7:ec:70:b6:19:dc:8f:96:5b:42:a7:13:76:f1:be:1d:f1",
+            "KeyName": "training",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-06d0c1082f4a1bd7e",
+            "KeyFingerprint": "08:bc:e0:60:9c:bc:76:af:c6:76:ba:93:84:ad:1c:de:5d:b6:ba:4d",
+            "KeyName": "training_terraform",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0b04d801989b2aa9c",
+            "KeyFingerprint": "68:00:f3:f8:38:30:4a:b7:23:cc:1b:f7:70:57:d6:04:8d:8d:2f:0d",
+            "KeyName": "subbu-terraform",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0b9fa345c54c1ef01",
+            "KeyFingerprint": "99:ce:a7:2a:8f:d2:59:45:32:ae:73:7d:3d:ae:bd:11:67:15:31:0a",
+            "KeyName": "trupti",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-020e11a104e4eda08",
+            "KeyFingerprint": "d5:8d:32:8e:df:ec:f8:41:59:70:eb:fb:14:37:8a:20:a3:0e:94:08",
+            "KeyName": "terraformveeru",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-01bf207f05efa495c",
+            "KeyFingerprint": "7b:2e:6c:a7:25:f5:02:50:22:df:51:f5:dd:9f:be:05:ce:b7:10:96",
+            "KeyName": "Keerthija",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-045dd86409eb793a8",
+            "KeyFingerprint": "34:bd:62:18:b0:bc:46:15:a1:97:91:98:db:7d:dc:eb:21:29:7e:d8",
+            "KeyName": "poc-key",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0772c053df026fdf0",
+            "KeyFingerprint": "61:41:59:4d:59:3b:7e:b1:22:f8:4d:4f:f1:be:50:62:b1:d7:c7:25",
+            "KeyName": "correctkey",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-00ffcd594722aa141",
+            "KeyFingerprint": "4b:ac:6c:35:85:ce:45:84:71:3a:cb:9f:2a:85:9e:af:98:00:4d:96",
+            "KeyName": "mykey-ec2",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0838d769defaf5091",
+            "KeyFingerprint": "cb:15:13:28:89:db:43:ad:11:0e:b0:e7:3d:3f:5a:41:c2:7b:9e:fa",
+            "KeyName": "satheesh-aws",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0b8d695f77f85782e",
+            "KeyFingerprint": "71:a9:55:41:b0:6c:d7:f4:60:3b:60:ca:77:f0:29:c9:bb:00:bd:60",
+            "KeyName": "mysecond-ec2pem",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0e170bec3993a2fbf",
+            "KeyFingerprint": "2b:a7:a0:fd:7b:43:4c:e9:82:9d:83:f7:db:d5:1b:06:a7:0b:2d:a4",
+            "KeyName": "haris-ec2",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0a427e766821c57ff",
+            "KeyFingerprint": "52:45:90:68:4b:2d:23:ec:91:bb:dd:de:40:94:d8:fb:55:67:0c:c7",
+            "KeyName": "tera_test1",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0e4270448fcff853a",
+            "KeyFingerprint": "1c:12:74:50:2f:45:da:59:a8:ab:c0:9b:e9:60:75:98:fe:cc:c6:b7",
+            "KeyName": "satheeshkumar-aws",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-0345b9fc84921c62c",
+            "KeyFingerprint": "27:a3:94:65:36:cd:af:d9:27:ca:6d:5f:3e:a6:71:0a:16:f6:a5:11",
+            "KeyName": "junaid_test",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+        {
+            "KeyPairId": "key-02b7b2889a0f98e7d",
+            "KeyFingerprint": "e6:55:ce:1a:33:8a:d6:8c:26:09:36:ea:33:c3:73:83:99:2e:d2:b0",
+            "KeyName": "Key pair",
+            "KeyType": "rsa",
+            "Tags": []
+        }
+    ]
+}
+ubuntu@ip-172-31-64-249:/aws$
+------------------------------------------------------------------------------------------------------
+
+ubuntu@ip-172-31-64-249:/aws$ aws ec2 describe-subnets
+{
+    "Subnets": [
+        {
+            "AvailabilityZone": "us-west-2b",
+            "AvailabilityZoneId": "usw2-az2",
+            "AvailableIpAddressCount": 65501,
+            "CidrBlock": "172.31.0.0/16",
+            "DefaultForAz": false,
+            "MapPublicIpOnLaunch": false,
+            "MapCustomerOwnedIpOnLaunch": false,
+            "State": "available",
+            "SubnetId": "subnet-00d54bc3a05afe8e3",
+            "VpcId": "vpc-050eae9ed504d40e2",
+            "OwnerId": "842079933651",
+            "AssignIpv6AddressOnCreation": false,
+            "Ipv6CidrBlockAssociationSet": [],
+            "SubnetArn": "arn:aws:ec2:us-west-2:842079933651:subnet/subnet-00d54bc3a05afe8e3",
+            "EnableDns64": false,
+            "Ipv6Native": false,
+            "PrivateDnsNameOptionsOnLaunch": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            }
+        }
+    ]
+}
+ubuntu@ip-172-31-64-249:/aws$
+
+---------------------------------------
+
+        {
+            "KeyPairId": "key-0e4270448fcff853a",
+            "KeyFingerprint": "1c:12:74:50:2f:45:da:59:a8:ab:c0:9b:e9:60:75:98:fe:cc:c6:b7",
+            "KeyName": "satheeshkumar-aws",
+            "KeyType": "rsa",
+            "Tags": []
+        },
+
+"SubnetId": "subnet-00d54bc3a05afe8e3",
+ami-060f2b16a4928ab66
+---------------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ ls -ltr
+total 4
+-rw-r--r-- 1 root root 593 Jun  8 11:29 main.tf
+ubuntu@ip-172-31-64-249:/aws$ cat main.tf
+provider "aws" {
+  access_key = "AKIA4ID7ACTJ2NLLIRES"
+  secret_key = "vo8wCJvWCxnPnnCDEnzdEmKqT7tsXxOOW0eleAeA"
+  region     = "us-west-2"   # Replace with your desired AWS region
+}
+
+
+
+resource "aws_instance" "satheesh" {
+  ami           = "ami-060f2b16a4928ab66"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-00d54bc3a05afe8e3"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+
+
+
+  tags = {
+    Name        = "ExampleInstance"
+    Environment = "Production"
+  }
+}
+ubuntu@ip-172-31-64-249:/aws$
+
+subnet-00d54bc3a05afe8e3
+--------------------------------------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform init
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding latest version of hashicorp/aws...
+- Installing hashicorp/aws v5.1.0...
+- Installed hashicorp/aws v5.1.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+ubuntu@ip-172-31-64-249:/aws$
+
+-----------------------------------------
+sudo terraform plan
+sudo terraform plan -out=tfplan.out
+terraform show tfplan.out
+
+
+sudo aws ec2 describe-images
+
+
+aws ec2 describe-images --filters "Name=name,Values=ubuntu/images/*ubuntu-*-20.04*" "Name=state,Values=available" --query 'Images[*].[ImageId]' --output text
+
+ubuntu@ip-172-31-64-249:/aws$ aws ec2 describe-images --filters "Name=name,Values=ubuntu/images/*ubuntu-*-20.04*" "Name=state,Values=available" --query 'Images[*].[ImageId]' --output text
+ami-0e623c4c77b6afcd1
+ami-07eeacb3005b9beae
+ami-06153641925794251
+ami-04bad3c587fe60d89
+ami-0142ff6e6ab305e8f
+ami-045cf0aa2cd437a65
+ami-0aab355e1bfa1e72e
+ami-0f8c910023cb408a1
+ami-05c71bdb375102d15
+ami-00aaee1e7c7b0ff78
+ami-0969de4d3188663ba
+ami-05b45bd47471e1710
+ami-089c7a82e46ab8304
+ami-0bfede6d711bff6ad
+ami-03b5aa81e1bf54234
+ami-01c6a44da41d875ab
+ami-063253a26897cf639
+ami-098b0d74f41ac5fbc
+ami-0c80a7aea78ea74e3
+ami-06fe50a1381ef760c
+ami-078c065e38be7296e
+ami-0ceeab680f529cc36
+ubuntu@ip-172-31-64-249:/aws$
+
+
+
+-----------------------
+aws ec2 describe-subnets
+aws ec2 describe-key-pairs
+aws ec2 create-key-pair --key-name my-key-pair --query 'KeyMaterial' --output text > my-key-pair.pem
+aws ec2 describe-images --filters "Name=name,Values=ubuntu/images/*ubuntu-*-20.04*" "Name=state,Values=available" --query 'Images[*].[ImageId]' --output text
+
+aws ec2 describe-images --owners amazon --filters "Name=architecture,Values=i386,x86_64" --query 'Images[*].[ImageId, Name]'
+
+terraform destory
+
+
+
+aws ec2 describe-instances
+
+
+
+sudo terraform destroy
+---------------------------------
+-------------------------------------------------------------------------------------------------------------------------------
+Day - 3 - Friday [9 /06/2023]
+-----------------------------
+
+ubuntu@ip-172-31-64-249:/aws$ cat main.tf
+provider "aws" {
+  access_key = "AKIA4ID7ACTJ2NLLIRES"
+  secret_key = "vo8wCJvWCxnPnnCDEnzdEmKqT7tsXxOOW0eleAeA"
+  region     = "us-west-1"   # Replace with your desired AWS region
+}
+
+
+
+resource "aws_instance" "satheesh" {
+  ami           = "ami-0f8e81a3da6e2510a"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0536db43230a88608"     # Replace with your desired subnet ID
+  key_name      = "mytraining7"             # Replace with your desired key pair name
+
+
+
+  tags = {
+    Name        = "ExampleInstance"
+    Environment = "Production"
+  }
+}
+ubuntu@ip-172-31-64-249:/aws$
+-----------------------------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform destroy
+aws_instance.satheesh: Refreshing state... [id=i-0e6a0aa88b3e9941d]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_instance.satheesh will be destroyed
+  - resource "aws_instance" "satheesh" {
+      - ami                                  = "ami-0f8e81a3da6e2510a" -> null
+      - arn                                  = "arn:aws:ec2:us-west-1:842079933651:instance/i-0e6a0aa88b3e9941d" -> null
+      - associate_public_ip_address          = false -> null
+      - availability_zone                    = "us-west-1b" -> null
+      - cpu_core_count                       = 1 -> null
+      - cpu_threads_per_core                 = 1 -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-0e6a0aa88b3e9941d" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "mytraining7" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-0c99c914dfb4991f0" -> null
+      - private_dns                          = "ip-172-31-238-87.us-west-1.compute.internal" -> null
+      - private_ip                           = "172.31.238.87" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [
+          - "default",
+        ] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0536db43230a88608" -> null
+      - tags                                 = {
+          - "Environment" = "Production"
+          - "Name"        = "ExampleInstance"
+        } -> null
+      - tags_all                             = {
+          - "Environment" = "Production"
+          - "Name"        = "ExampleInstance"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-0ac399ab33b66cba5",
+        ] -> null
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "optional" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 100 -> null
+          - tags                  = {} -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-006d3dbdf00b4aec8" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp2" -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: ^C
+╷
+│ Error: error asking for approval: interrupted
+│
+│
+╵
+
+Interrupt received.
+Please wait for Terraform to exit or data loss may occur.
+Gracefully shutting down...
+
+ubuntu@ip-172-31-64-249:/aws$
+ubuntu@ip-172-31-64-249:/aws$
+ubuntu@ip-172-31-64-249:/aws$
+ubuntu@ip-172-31-64-249:/aws$
+-----------------------------------------------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform apply
+aws_instance.satheesh: Refreshing state... [id=i-0e6a0aa88b3e9941d]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+-/+ destroy and then create replacement
+
+Terraform will perform the following actions:
+
+  # aws_instance.satheesh must be replaced
+-/+ resource "aws_instance" "satheesh" {
+      ~ ami                                  = "ami-0f8e81a3da6e2510a" -> "ami-00baaa26c63140022" # forces replacement
+      ~ arn                                  = "arn:aws:ec2:us-west-1:842079933651:instance/i-0e6a0aa88b3e9941d" -> (known after apply)
+      ~ associate_public_ip_address          = false -> (known after apply)
+      ~ availability_zone                    = "us-west-1b" -> (known after apply)
+      ~ cpu_core_count                       = 1 -> (known after apply)
+      ~ cpu_threads_per_core                 = 1 -> (known after apply)
+      ~ disable_api_stop                     = false -> (known after apply)
+      ~ disable_api_termination              = false -> (known after apply)
+      ~ ebs_optimized                        = false -> (known after apply)
+      - hibernation                          = false -> null
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      ~ id                                   = "i-0e6a0aa88b3e9941d" -> (known after apply)
+      ~ instance_initiated_shutdown_behavior = "stop" -> (known after apply)
+      ~ instance_state                       = "running" -> (known after apply)
+      ~ ipv6_address_count                   = 0 -> (known after apply)
+      ~ ipv6_addresses                       = [] -> (known after apply)
+      ~ key_name                             = "mytraining7" -> "Satheeshkumar-aws1" # forces replacement
+      ~ monitoring                           = false -> (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      ~ placement_partition_number           = 0 -> (known after apply)
+      ~ primary_network_interface_id         = "eni-0c99c914dfb4991f0" -> (known after apply)
+      ~ private_dns                          = "ip-172-31-238-87.us-west-1.compute.internal" -> (known after apply)
+      ~ private_ip                           = "172.31.238.87" -> (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      ~ secondary_private_ips                = [] -> (known after apply)
+      ~ security_groups                      = [
+          - "default",
+        ] -> (known after apply)
+        tags                                 = {
+            "Environment" = "Production"
+            "Name"        = "ExampleInstance"
+        }
+      ~ tenancy                              = "default" -> (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      ~ vpc_security_group_ids               = [
+          - "sg-0ac399ab33b66cba5",
+        ] -> (known after apply)
+        # (6 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_put_response_hop_limit = 1 -> null
+          - http_tokens                 = "optional" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/sda1" -> null
+          - encrypted             = false -> null
+          - iops                  = 100 -> null
+          - tags                  = {} -> null
+          - throughput            = 0 -> null
+          - volume_id             = "vol-006d3dbdf00b4aec8" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp2" -> null
+        }
+    }
+
+Plan: 1 to add, 0 to change, 1 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.satheesh: Destroying... [id=i-0e6a0aa88b3e9941d]
+aws_instance.satheesh: Still destroying... [id=i-0e6a0aa88b3e9941d, 10s elapsed]
+aws_instance.satheesh: Still destroying... [id=i-0e6a0aa88b3e9941d, 20s elapsed]
+aws_instance.satheesh: Still destroying... [id=i-0e6a0aa88b3e9941d, 30s elapsed]
+aws_instance.satheesh: Destruction complete after 40s
+aws_instance.satheesh: Creating...
+aws_instance.satheesh: Still creating... [10s elapsed]
+aws_instance.satheesh: Still creating... [20s elapsed]
+aws_instance.satheesh: Still creating... [30s elapsed]
+aws_instance.satheesh: Creation complete after 31s [id=i-0bb918101ca127aa4]
+
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+ubuntu@ip-172-31-64-249:/aws$
+
+ubuntu@ip-172-31-64-249:/aws$ cat terraform.tfstate
+{
+  "version": 4,
+  "terraform_version": "1.4.6",
+  "serial": 6,
+  "lineage": "37c3d769-3199-f985-3218-10af9671e35e",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "aws_instance",
+      "name": "satheesh",
+      "provider": "provider[\"registry.terraform.io/hashicorp/aws\"]",
+      "instances": [
+        {
+          "schema_version": 1,
+          "attributes": {
+            "ami": "ami-00baaa26c63140022",
+            "arn": "arn:aws:ec2:us-west-1:842079933651:instance/i-0bb918101ca127aa4",
+            "associate_public_ip_address": false,
+            "availability_zone": "us-west-1b",
+            "capacity_reservation_specification": [
+              {
+                "capacity_reservation_preference": "open",
+                "capacity_reservation_target": []
+              }
+            ],
+            "cpu_core_count": 1,
+            "cpu_options": [
+              {
+                "amd_sev_snp": "",
+                "core_count": 1,
+                "threads_per_core": 1
+              }
+            ],
+            "cpu_threads_per_core": 1,
+            "credit_specification": [
+              {
+                "cpu_credits": "standard"
+              }
+            ],
+            "disable_api_stop": false,
+            "disable_api_termination": false,
+            "ebs_block_device": [],
+            "ebs_optimized": false,
+            "enclave_options": [
+              {
+                "enabled": false
+              }
+            ],
+            "ephemeral_block_device": [],
+            "get_password_data": false,
+            "hibernation": false,
+            "host_id": "",
+            "host_resource_group_arn": null,
+            "iam_instance_profile": "",
+            "id": "i-0bb918101ca127aa4",
+            "instance_initiated_shutdown_behavior": "stop",
+            "instance_state": "running",
+            "instance_type": "t2.micro",
+            "ipv6_address_count": 0,
+            "ipv6_addresses": [],
+            "key_name": "Satheeshkumar-aws1",
+            "launch_template": [],
+            "maintenance_options": [
+              {
+                "auto_recovery": "default"
+              }
+            ],
+            "metadata_options": [
+              {
+                "http_endpoint": "enabled",
+                "http_put_response_hop_limit": 2,
+                "http_tokens": "required",
+                "instance_metadata_tags": "disabled"
+              }
+            ],
+            "monitoring": false,
+            "network_interface": [],
+            "outpost_arn": "",
+            "password_data": "",
+            "placement_group": "",
+            "placement_partition_number": 0,
+            "primary_network_interface_id": "eni-0d17106a862806e67",
+            "private_dns": "ip-172-31-16-111.us-west-1.compute.internal",
+            "private_dns_name_options": [
+              {
+                "enable_resource_name_dns_a_record": false,
+                "enable_resource_name_dns_aaaa_record": false,
+                "hostname_type": "ip-name"
+              }
+            ],
+            "private_ip": "172.31.16.111",
+            "public_dns": "",
+            "public_ip": "",
+            "root_block_device": [
+              {
+                "delete_on_termination": true,
+                "device_name": "/dev/xvda",
+                "encrypted": false,
+                "iops": 3000,
+                "kms_key_id": "",
+                "tags": {},
+                "throughput": 125,
+                "volume_id": "vol-0425b721bcea2afb9",
+                "volume_size": 8,
+                "volume_type": "gp3"
+              }
+            ],
+            "secondary_private_ips": [],
+            "security_groups": [
+              "default"
+            ],
+            "source_dest_check": true,
+            "subnet_id": "subnet-0536db43230a88608",
+            "tags": {
+              "Environment": "Production",
+              "Name": "ExampleInstance"
+            },
+            "tags_all": {
+              "Environment": "Production",
+              "Name": "ExampleInstance"
+            },
+            "tenancy": "default",
+            "timeouts": null,
+            "user_data": null,
+            "user_data_base64": null,
+            "user_data_replace_on_change": false,
+            "volume_tags": null,
+            "vpc_security_group_ids": [
+              "sg-0ac399ab33b66cba5"
+            ]
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo2MDAwMDAwMDAwMDAsImRlbGV0ZSI6MTIwMDAwMDAwMDAwMCwidXBkYXRlIjo2MDAwMDAwMDAwMDB9LCJzY2hlbWFfdmVyc2lvbiI6IjEifQ=="
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
+ubuntu@ip-172-31-64-249:/aws$
+
+-----------------------------------------------------------------
+
+provider details :-
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs
+
+
+==============================================================================
+
+Day - 4 - Monday [12/06/2023]
+------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform state list
+aws_instance.satheesh
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform state list -state=terraform.tfstate.backup
+aws_instance.satheesh
+ubuntu@ip-172-31-64-249:/aws$
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform state list -state=terraform.tfstate
+aws_instance.satheesh
+ubuntu@ip-172-31-64-249:/aws$
+
+terraform state list
+terraform state list -state=terraform.tfstate.backup
+ls
+mv terraform.tfstate terraform.tfstate.bck
+mv terraform.tfstate.backup terraform.tfstate
+terraform state list
+terraform state show <name of the instance>
+
+--------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ terraform state list
+aws_instance.satheesh
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform state show aws_instance.satheesh
+# aws_instance.satheesh:
+resource "aws_instance" "satheesh" {
+    ami                                  = "ami-00baaa26c63140022"
+    arn                                  = "arn:aws:ec2:us-west-1:842079933651:instance/i-03c1418d56d2757da"
+    associate_public_ip_address          = true
+    availability_zone                    = "us-west-1b"
+    cpu_core_count                       = 1
+    cpu_threads_per_core                 = 1
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    get_password_data                    = false
+    hibernation                          = false
+    id                                   = "i-03c1418d56d2757da"
+    instance_initiated_shutdown_behavior = "stop"
+    instance_state                       = "running"
+    instance_type                        = "t2.micro"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "Satheeshkumar-aws1"
+    monitoring                           = false
+    placement_partition_number           = 0
+    primary_network_interface_id         = "eni-03a24722d7de2d906"
+    private_dns                          = "ip-172-31-92-111.us-west-1.compute.internal"
+    private_ip                           = "172.31.92.111"
+    public_dns                           = "ec2-13-52-103-157.us-west-1.compute.amazonaws.com"
+    public_ip                            = "13.52.103.157"
+    secondary_private_ips                = []
+    security_groups                      = [
+        "default",
+    ]
+    source_dest_check                    = true
+    subnet_id                            = "subnet-0536db43230a88608"
+    tags                                 = {
+        "Environment" = "Production"
+        "Name"        = "satheeshkumar-aws"
+    }
+    tags_all                             = {
+        "Environment" = "Production"
+        "Name"        = "satheeshkumar-aws"
+    }
+    tenancy                              = "default"
+    user_data_replace_on_change          = false
+    vpc_security_group_ids               = [
+        "sg-0ac399ab33b66cba5",
+    ]
+
+    capacity_reservation_specification {
+        capacity_reservation_preference = "open"
+    }
+
+    cpu_options {
+        core_count       = 1
+        threads_per_core = 1
+    }
+
+    credit_specification {
+        cpu_credits = "standard"
+    }
+
+    enclave_options {
+        enabled = false
+    }
+
+    maintenance_options {
+        auto_recovery = "default"
+    }
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_put_response_hop_limit = 2
+        http_tokens                 = "required"
+        instance_metadata_tags      = "disabled"
+    }
+
+    private_dns_name_options {
+        enable_resource_name_dns_a_record    = false
+        enable_resource_name_dns_aaaa_record = false
+        hostname_type                        = "ip-name"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "/dev/xvda"
+        encrypted             = false
+        iops                  = 3000
+        tags                  = {}
+        throughput            = 125
+        volume_id             = "vol-0be1650ac7c577664"
+        volume_size           = 8
+        volume_type           = "gp3"
+    }
+}
+ubuntu@ip-172-31-64-249:/aws$
+---------------------------------------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform destroy
+aws_instance.satheesh: Refreshing state... [id=i-03c1418d56d2757da]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_instance.satheesh will be destroyed
+  - resource "aws_instance" "satheesh" {
+      - ami                                  = "ami-00baaa26c63140022" -> null
+      - arn                                  = "arn:aws:ec2:us-west-1:842079933651:instance/i-03c1418d56d2757da" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "us-west-1b" -> null
+      - cpu_core_count                       = 1 -> null
+      - cpu_threads_per_core                 = 1 -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - id                                   = "i-03c1418d56d2757da" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t2.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - key_name                             = "Satheeshkumar-aws1" -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-03a24722d7de2d906" -> null
+      - private_dns                          = "ip-172-31-92-111.us-west-1.compute.internal" -> null
+      - private_ip                           = "172.31.92.111" -> null
+      - public_dns                           = "ec2-13-52-103-157.us-west-1.compute.amazonaws.com" -> null
+      - public_ip                            = "13.52.103.157" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [
+          - "default",
+        ] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0536db43230a88608" -> null
+      - tags                                 = {
+          - "Environment" = "Production"
+          - "Name"        = "satheeshkumar-aws"
+        } -> null
+      - tags_all                             = {
+          - "Environment" = "Production"
+          - "Name"        = "satheeshkumar-aws"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data_replace_on_change          = false -> null
+      - vpc_security_group_ids               = [
+          - "sg-0ac399ab33b66cba5",
+        ] -> null
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count       = 1 -> null
+          - threads_per_core = 1 -> null
+        }
+
+      - credit_specification {
+          - cpu_credits = "standard" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_put_response_hop_limit = 2 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/xvda" -> null
+          - encrypted             = false -> null
+          - iops                  = 3000 -> null
+          - tags                  = {} -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-0be1650ac7c577664" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp3" -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+Do you really want to destroy all resources?
+  Terraform will destroy all your managed infrastructure, as shown above.
+  There is no undo. Only 'yes' will be accepted to confirm.
+
+  Enter a value: yes
+
+aws_instance.satheesh: Destroying... [id=i-03c1418d56d2757da]
+aws_instance.satheesh: Still destroying... [id=i-03c1418d56d2757da, 10s elapsed]
+aws_instance.satheesh: Still destroying... [id=i-03c1418d56d2757da, 20s elapsed]
+aws_instance.satheesh: Destruction complete after 30s
+
+Destroy complete! Resources: 1 destroyed.
+ubuntu@ip-172-31-64-249:/aws$
+-----------------------------------------------------------------------------------------
+Day - 5 - Tusday [13/06/2023]
+------------------------------
+
+output "public_ip" {
+  value = aws_instance.example.public_ip
+}
+
+
+===========================================================
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform apply
+
+Terraform used the selected providers to generate the following execution plan.
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.satheesh will be created
+  + resource "aws_instance" "satheesh" {
+      + ami                                  = "ami-00baaa26c63140022"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "Satheeshkumar-aws1"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-0536db43230a88608"
+      + tags                                 = {
+          + "Environment" = "Production"
+          + "Name"        = "satheeshkumar-aws"
+        }
+      + tags_all                             = {
+          + "Environment" = "Production"
+          + "Name"        = "satheeshkumar-aws"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + public_ip = (known after apply)
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.satheesh: Creating...
+aws_instance.satheesh: Still creating... [10s elapsed]
+aws_instance.satheesh: Still creating... [20s elapsed]
+aws_instance.satheesh: Still creating... [30s elapsed]
+aws_instance.satheesh: Creation complete after 32s [id=i-08332b7e0b3866967]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+public_ip = "52.53.232.52"
+ubuntu@ip-172-31-64-249:/aws$ cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = "AKIA4ID7ACTJ2NLLIRES"
+  secret_key = "vo8wCJvWCxnPnnCDEnzdEmKqT7tsXxOOW0eleAeA"
+  region     = "us-west-1"   # Replace with your desired AWS region
+}
+
+
+
+resource "aws_instance" "satheesh" {
+  ami           = "ami-00baaa26c63140022"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0536db43230a88608"     # Replace with your desired sub
+  key_name      = "Satheeshkumar-aws1"             # Replace with your desired k
+
+
+
+  tags = {
+    Name        = "satheeshkumar-aws"
+    Environment = "Production"
+  }
+}
+output "public_ip" {
+  value = aws_instance.satheesh.public_ip
+}
+ubuntu@ip-172-31-64-249:/aws$
+ubuntu@ip-172-31-64-249:/aws$
+
+==========================================================================
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform apply
+aws_instance.satheesh: Refreshing state... [id=i-08332b7e0b3866967]
+
+Changes to Outputs:
+  + az        = "us-west-1b"
+  - public_ip = "52.53.232.52" -> null
+
+You can apply this plan to save these new output values to the Terraform state, without changing any real infrastructure.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+az = "us-west-1b"
+ubuntu@ip-172-31-64-249:/aws$
+----------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform apply
+aws_instance.satheesh: Refreshing state... [id=i-08332b7e0b3866967]
+
+Changes to Outputs:
+  + public_ip = "52.53.232.52"
+
+You can apply this plan to save these new output values to the Terraform state, without changing any real infrastructure.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+az = "us-west-1b"
+public_ip = "52.53.232.52"
+ubuntu@ip-172-31-64-249:/aws$
+--------------------------------------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo vi output.tf
+ubuntu@ip-172-31-64-249:/aws$
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform output
+az = "us-west-1b"
+public_ip = "52.53.232.52"
+ubuntu@ip-172-31-64-249:/aws$
+
+-------------------------------------------
+resource "aws_security_group" "allow_tls" {
+  name        = "allow_tls"
+  description = "Allow TLS inbound traffic"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description      = "TLS from VPC"
+    from_port        = 443
+    to_port          = 443
+    protocol         = "tcp"
+    cidr_blocks      = [aws_vpc.main.cidr_block]
+    ipv6_cidr_blocks = [aws_vpc.main.ipv6_cidr_block]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow_tls"
+  }
+}
+
+------------------------------------
+provider "aws" {
+  access_key = "AKIA43KKKGRBTHIR2T67"
+  secret_key = "f/XnR+tAAtuhCLLfeOW+V6Qg1a0cc3ZzTK0vRyhS"
+  region     = "us-west-2"   # Replace with your desired AWS region
+}
+ 
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+  depends_on = [aws_security_group.example_sg]
+}
+resource "aws_security_group" "example_sg" {
+  name        = "example_sg"
+  description = "Example security group"
+ 
+  # Security group rules...
+ 
+  depends_on = [aws_vpc.example_vpc]
+}
+ 
+resource "aws_vpc" "example_vpc" {
+  cidr_block = "10.0.0.0/16"
+ 
+  # VPC configurations...
+}
+========================================================================
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform plan
+aws_instance.satheesh: Refreshing state... [id=i-08332b7e0b3866967]
+
+Changes to Outputs:
+  - az        = "us-west-1b" -> null
+  + full      = {
+      + ami                                  = "ami-00baaa26c63140022"
+      + arn                                  = "arn:aws:ec2:us-west-1:8420799336
+      + associate_public_ip_address          = true
+      + availability_zone                    = "us-west-1b"
+      + capacity_reservation_specification   = [
+          + {
+              + capacity_reservation_preference = "open"
+              + capacity_reservation_target     = []
+            },
+        ]
+      + cpu_core_count                       = 1
+      + cpu_options                          = [
+          + {
+              + amd_sev_snp      = ""
+              + core_count       = 1
+              + threads_per_core = 1
+            },
+        ]
+      + cpu_threads_per_core                 = 1
+      + credit_specification                 = [
+          + {
+              + cpu_credits = "standard"
+            },
+        ]
+      + disable_api_stop                     = false
+      + disable_api_termination              = false
+      + ebs_block_device                     = []
+      + ebs_optimized                        = false
+      + enclave_options                      = [
+          + {
+              + enabled = false
+            },
+        ]
+      + ephemeral_block_device               = []
+      + get_password_data                    = false
+      + hibernation                          = false
+      + host_id                              = ""
+      + host_resource_group_arn              = null
+      + iam_instance_profile                 = ""
+      + id                                   = "i-08332b7e0b3866967"
+      + instance_initiated_shutdown_behavior = "stop"
+      + instance_state                       = "running"
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = 0
+      + ipv6_addresses                       = []
+      + key_name                             = "Satheeshkumar-aws1"
+      + launch_template                      = []
+      + maintenance_options                  = [
+          + {
+              + auto_recovery = "default"
+            },
+        ]
+      + metadata_options                     = [
+          + {
+              + http_endpoint               = "enabled"
+              + http_put_response_hop_limit = 2
+              + http_tokens                 = "required"
+              + instance_metadata_tags      = "disabled"
+            },
+        ]
+      + monitoring                           = false
+      + network_interface                    = []
+      + outpost_arn                          = ""
+      + password_data                        = ""
+      + placement_group                      = ""
+      + placement_partition_number           = 0
+      + primary_network_interface_id         = "eni-0b74f8a9110fa16ef"
+      + private_dns                          = "ip-172-31-144-234.us-west-1.comp
+      + private_dns_name_options             = [
+          + {
+              + enable_resource_name_dns_a_record    = false
+              + enable_resource_name_dns_aaaa_record = false
+              + hostname_type                        = "ip-name"
+            },
+        ]
+      + private_ip                           = "172.31.144.234"
+      + public_dns                           = "ec2-52-53-232-52.us-west-1.compu
+      + public_ip                            = "52.53.232.52"
+      + root_block_device                    = [
+          + {
+              + delete_on_termination = true
+              + device_name           = "/dev/xvda"
+              + encrypted             = false
+              + iops                  = 3000
+              + kms_key_id            = ""
+              + tags                  = {}
+              + throughput            = 125
+              + volume_id             = "vol-02152d34b8d00f54f"
+              + volume_size           = 8
+              + volume_type           = "gp3"
+            },
+        ]
+      + secondary_private_ips                = []
+      + security_groups                      = [
+          + "default",
+        ]
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-0536db43230a88608"
+      + tags                                 = {
+          + Environment = "Production"
+          + Name        = "satheeshkumar-aws"
+        }
+      + tags_all                             = {
+          + Environment = "Production"
+          + Name        = "satheeshkumar-aws"
+        }
+      + tenancy                              = "default"
+      + timeouts                             = null
+      + user_data                            = null
+      + user_data_base64                     = null
+      + user_data_replace_on_change          = false
+      + volume_tags                          = null
+      + vpc_security_group_ids               = [
+          + "sg-0ac399ab33b66cba5",
+        ]
+    }
+  - public_ip = "52.53.232.52" -> null
+
+You can apply this plan to save these new output values to the Terraform state,
+
+────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guara
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform apply
+aws_instance.satheesh: Refreshing state... [id=i-08332b7e0b3866967]
+
+Changes to Outputs:
+  - az        = "us-west-1b" -> null
+  + full      = {
+      + ami                                  = "ami-00baaa26c63140022"
+      + arn                                  = "arn:aws:ec2:us-west-1:8420799336
+      + associate_public_ip_address          = true
+      + availability_zone                    = "us-west-1b"
+      + capacity_reservation_specification   = [
+          + {
+              + capacity_reservation_preference = "open"
+              + capacity_reservation_target     = []
+            },
+        ]
+      + cpu_core_count                       = 1
+      + cpu_options                          = [
+          + {
+              + amd_sev_snp      = ""
+              + core_count       = 1
+              + threads_per_core = 1
+            },
+        ]
+      + cpu_threads_per_core                 = 1
+      + credit_specification                 = [
+          + {
+              + cpu_credits = "standard"
+            },
+        ]
+      + disable_api_stop                     = false
+      + disable_api_termination              = false
+      + ebs_block_device                     = []
+      + ebs_optimized                        = false
+      + enclave_options                      = [
+          + {
+              + enabled = false
+            },
+        ]
+      + ephemeral_block_device               = []
+      + get_password_data                    = false
+      + hibernation                          = false
+      + host_id                              = ""
+      + host_resource_group_arn              = null
+      + iam_instance_profile                 = ""
+      + id                                   = "i-08332b7e0b3866967"
+      + instance_initiated_shutdown_behavior = "stop"
+      + instance_state                       = "running"
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = 0
+      + ipv6_addresses                       = []
+      + key_name                             = "Satheeshkumar-aws1"
+      + launch_template                      = []
+      + maintenance_options                  = [
+          + {
+              + auto_recovery = "default"
+            },
+        ]
+      + metadata_options                     = [
+          + {
+              + http_endpoint               = "enabled"
+              + http_put_response_hop_limit = 2
+              + http_tokens                 = "required"
+              + instance_metadata_tags      = "disabled"
+            },
+        ]
+      + monitoring                           = false
+      + network_interface                    = []
+      + outpost_arn                          = ""
+      + password_data                        = ""
+      + placement_group                      = ""
+      + placement_partition_number           = 0
+      + primary_network_interface_id         = "eni-0b74f8a9110fa16ef"
+      + private_dns                          = "ip-172-31-144-234.us-west-1.comp
+      + private_dns_name_options             = [
+          + {
+              + enable_resource_name_dns_a_record    = false
+              + enable_resource_name_dns_aaaa_record = false
+              + hostname_type                        = "ip-name"
+            },
+        ]
+      + private_ip                           = "172.31.144.234"
+      + public_dns                           = "ec2-52-53-232-52.us-west-1.compu
+      + public_ip                            = "52.53.232.52"
+      + root_block_device                    = [
+          + {
+              + delete_on_termination = true
+              + device_name           = "/dev/xvda"
+              + encrypted             = false
+              + iops                  = 3000
+              + kms_key_id            = ""
+              + tags                  = {}
+              + throughput            = 125
+              + volume_id             = "vol-02152d34b8d00f54f"
+              + volume_size           = 8
+              + volume_type           = "gp3"
+            },
+        ]
+      + secondary_private_ips                = []
+      + security_groups                      = [
+          + "default",
+        ]
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-0536db43230a88608"
+      + tags                                 = {
+          + Environment = "Production"
+          + Name        = "satheeshkumar-aws"
+        }
+      + tags_all                             = {
+          + Environment = "Production"
+          + Name        = "satheeshkumar-aws"
+        }
+      + tenancy                              = "default"
+      + timeouts                             = null
+      + user_data                            = null
+      + user_data_base64                     = null
+      + user_data_replace_on_change          = false
+      + volume_tags                          = null
+      + vpc_security_group_ids               = [
+          + "sg-0ac399ab33b66cba5",
+        ]
+    }
+  - public_ip = "52.53.232.52" -> null
+
+You can apply this plan to save these new output values to the Terraform state,
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+full = {
+  "ami" = "ami-00baaa26c63140022"
+  "arn" = "arn:aws:ec2:us-west-1:842079933651:instance/i-08332b7e0b3866967"
+  "associate_public_ip_address" = true
+  "availability_zone" = "us-west-1b"
+  "capacity_reservation_specification" = tolist([
+    {
+      "capacity_reservation_preference" = "open"
+      "capacity_reservation_target" = tolist([])
+    },
+  ])
+  "cpu_core_count" = 1
+  "cpu_options" = tolist([
+    {
+      "amd_sev_snp" = ""
+      "core_count" = 1
+      "threads_per_core" = 1
+    },
+  ])
+  "cpu_threads_per_core" = 1
+  "credit_specification" = tolist([
+    {
+      "cpu_credits" = "standard"
+    },
+  ])
+  "disable_api_stop" = false
+  "disable_api_termination" = false
+  "ebs_block_device" = toset([])
+  "ebs_optimized" = false
+  "enclave_options" = tolist([
+    {
+      "enabled" = false
+    },
+  ])
+  "ephemeral_block_device" = toset([])
+  "get_password_data" = false
+  "hibernation" = false
+  "host_id" = ""
+  "host_resource_group_arn" = tostring(null)
+  "iam_instance_profile" = ""
+  "id" = "i-08332b7e0b3866967"
+  "instance_initiated_shutdown_behavior" = "stop"
+  "instance_state" = "running"
+  "instance_type" = "t2.micro"
+  "ipv6_address_count" = 0
+  "ipv6_addresses" = tolist([])
+  "key_name" = "Satheeshkumar-aws1"
+  "launch_template" = tolist([])
+  "maintenance_options" = tolist([
+    {
+      "auto_recovery" = "default"
+    },
+  ])
+  "metadata_options" = tolist([
+    {
+      "http_endpoint" = "enabled"
+      "http_put_response_hop_limit" = 2
+      "http_tokens" = "required"
+      "instance_metadata_tags" = "disabled"
+    },
+  ])
+  "monitoring" = false
+  "network_interface" = toset([])
+  "outpost_arn" = ""
+  "password_data" = ""
+  "placement_group" = ""
+  "placement_partition_number" = 0
+  "primary_network_interface_id" = "eni-0b74f8a9110fa16ef"
+  "private_dns" = "ip-172-31-144-234.us-west-1.compute.internal"
+  "private_dns_name_options" = tolist([
+    {
+      "enable_resource_name_dns_a_record" = false
+      "enable_resource_name_dns_aaaa_record" = false
+      "hostname_type" = "ip-name"
+    },
+  ])
+  "private_ip" = "172.31.144.234"
+  "public_dns" = "ec2-52-53-232-52.us-west-1.compute.amazonaws.com"
+  "public_ip" = "52.53.232.52"
+  "root_block_device" = tolist([
+    {
+      "delete_on_termination" = true
+      "device_name" = "/dev/xvda"
+      "encrypted" = false
+      "iops" = 3000
+      "kms_key_id" = ""
+      "tags" = tomap({})
+      "throughput" = 125
+      "volume_id" = "vol-02152d34b8d00f54f"
+      "volume_size" = 8
+      "volume_type" = "gp3"
+    },
+  ])
+  "secondary_private_ips" = toset([])
+  "security_groups" = toset([
+    "default",
+  ])
+  "source_dest_check" = true
+  "subnet_id" = "subnet-0536db43230a88608"
+  "tags" = tomap({
+    "Environment" = "Production"
+    "Name" = "satheeshkumar-aws"
+  })
+  "tags_all" = tomap({
+    "Environment" = "Production"
+    "Name" = "satheeshkumar-aws"
+  })
+  "tenancy" = "default"
+  "timeouts" = null /* object */
+  "user_data" = tostring(null)
+  "user_data_base64" = tostring(null)
+  "user_data_replace_on_change" = false
+  "volume_tags" = tomap(null) /* of string */
+  "vpc_security_group_ids" = toset([
+    "sg-0ac399ab33b66cba5",
+  ])
+}
+ubuntu@ip-172-31-64-249:/aws$
+---------------------------------------------------------------------------------
+Day - 6 - Wednesday [14/06/2023]
+----------------------------------
+Name        = "instance-${count.index}"  
+
+------------------------------------------------
+
+output "instanceid" {
+
+value = aws_instance.example[*].id
+
+}
+
+tags = {
+
+    Name        = "instance-${count.index}"
+
+  }
+
+}
+
+output "instanceid" {
+
+value = aws_instance.example[*].id
+
+}
+-----------------------------------------------
+variable "instancetyp" {
+
+description = "This is instance type"
+
+type = string
+
+default = "t2.large"
+
+}
+
+terraform plan -var="instancetyp=t1.mediume"
+
+------------------------------------------
+terraform plan -var="instancetyp=t2.medium"
+
+instance_type = "t1.medium"
+
+var.tfvar
+
+var.tfars
+
+var.tfvars
+
+resource "aws_instance" "example" {
+
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+
+  instance_type = var.instancetyp
+
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+
+  key_name      = "my-key-pair"             # Replace with your desired key pair nam
+
+  tags = {
+
+    Name        = "test"
+
+  }
+
+}
+
+
+instancetyp = "t3.small"
+
+
+instancetyp = "t3.small"
+
+
+
+export TF_VAR_instancetyp=t2.mediume
+----------------------------------------------------------
+variable "ec2_instance" {
+  default = {
+    instance_type = "t2.micro"
+    ami_id        = "ami-066fdb387a3b86d3d"
+    subnet_id     = "subnet-0e09953db95a5ac65"
+    tags          = {
+      Name        = "MyEC2Instance"
+      Environment = "Production"
+    }
+    security_groups = ["launch-wizard-3", "launch-wizard-1"]
+  }
+}
+--------------------------------------------------------------
+Apply with default value 
+
+1. Run command : terraform apply 
+
+Try with command line 
+
+2. During run time, setting var 
+
+terraform plan -var="instance_type=t.large"
+terraform apply -var="instance_type=t.large" 
+
+3.Setting env value
+export TF_VAR_instance_type=t2.large
+terraform plan
+
+4. using file
+unset TF_VAR_instance_type
+terraform apply -var-file="variables.tfvars"
+terraform plan
+-----------------------------------------------------
+resource "aws_instance" "example" {
+  ami           = var.ec2_instance["ami_id"]  # Replace with your desired AMI ID
+  instance_type = var.ec2_instance["ami_id"]
+  subnet_id     = var.ec2_instance["subnet_id"]    # Replace with your desired subnet ID
+  key_name      = "my-key-pair"            # Replace with your desired key pair name
+
+ 
+
+    tags = var.ec2_instance["tags"]
+
+ 
+
+  security_groups = [var.ec2_instance.security_groups[0]]
+
+ resource "aws_instance" "example" {
+  ami           = var.ec2_instance["ami_id"]  # Replace with your desired AMI ID
+  instance_type = var.ec2_instance["ami_id"]
+  subnet_id     = var.ec2_instance["subnet_id"]    # Replace with your desired subnet ID
+  key_name      = "my-key-pair"            # Replace with your desired key pair name
+
+ 
+
+    tags = var.ec2_instance["tags"]
+
+ 
+
+  security_groups = [var.ec2_instance.security_groups[0]]
+
+ 
+
+}
+
+resource "aws_instance" "example" {
+  ami           = var.ec2_instance["ami_id"]  # Replace with your desired AMI ID
+  instance_type = var.ec2_instance["instance_type"]
+  subnet_id     = var.ec2_instance["subnet_id"]    # Replace with your desired subnet ID
+  key_name      = "my-key-pair"            # Replace with your desired key pair name
+
+ 
+
+    tags = var.ec2_instance["tags"]
+
+ 
+
+  security_groups = [var.ec2_instance.security_groups[0]]
+
+ 
+
+}
+
+
+====================================================
+Day - 7 - Thrusday [15/06/2023]
+----------------------------------
+
+variable "instance_types" {
+  type = list(string)
+  default = ["t2.micro", "m5.large", "c5.xlarge"]
+}
+resource "aws_instance" "exae" {
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  count         = length(var.instance_types)
+  instance_type = var.instance_types[count.index]
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+
+ 
+
+  tags = {
+    Name        = "ExampleInstance"
+    Environment = "Production"
+  }
+}
+-----------------------------------------
+terraform plan -var 'instance_types=["t2.micro", "t2.medium", "t2.large"]'
+
+--------------------------------------------
+variable "environment" {
+  type    = string
+  default = "development"
+}
+resource "aws_instance" "exae" {
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+
+ 
+
+  tags = {
+    Environment = var.environment == "Production" ? "prod" : "dev"
+  }
+}
+--------------------------------------------------
+
+[07:51] amit (Trainer) (Guest)
+
+variable "environment" {
+
+  type    = string
+
+  default = "development"
+
+}
+variable "create_instance" {
+
+  type    = bool
+
+  default = "true"
+} 
+
+resource "aws_instance" "exae" {
+
+  count         = var.create_instance ? 1 : 0
+
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+
+  instance_type = "t2.micro"
+
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+
+ 
+
+  tags = {
+
+    Environment = var.environment == "Production" ? "prod" : "dev"
+
+  }
+
+}
+
+---------------------------------------
+sudo terraform plan -var="create_instance=true"
+-----------------------------------------------
+
+locals {
+
+  instance_count = 2
+
+  instance_type  = "t2.micro"
+
+  instance_tags  = {
+
+    Environment = "production"
+
+    Owner       = "ow"
+
+  }
+
+}
+
+resource "aws_instance" "exae" {
+
+  count         = local.instance_count
+
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+
+  instance_type = local.instance_type
+
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+
+  key_name      = "my-key-pair" # Replace with your desired key pair name
+
+  tags         = local.instance_tags
+
+}
+
+output "instance_names" {
+  value = [for i in range(local.instance_count) : "instance-${i+1}"]
+}
+----------------------------------------------------------------
+Day - 8 - Friday[16/06/2023]
+----------------------------------
+locals {
+  instance_type_map = {
+     "app"  = "t2.micro"
+     "db"   = "t2.medium"
+}
+}
+resource "aws_instance" "example-web" {
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  instance_type = local.instance_type_map["app"]
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+}
+-----------------------------------------------------
+variable "instance_count" {
+  description = "test"
+  type = number
+  default = 3
+}
+variable "instance_count_max" {
+  description = "test"
+  type = number
+  default = 5
+}
+
+ 
+
+resource "aws_instance" "example-web" {
+  ami           = "ami-0b8987a72eee28c3d"  # Replace with your desired AMI ID
+  count = max(var.instance_count, var.instance_count_max)
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+}
+---------------------------------------------------
+
+ubuntu@ip-172-31-64-249:/aws$ sudo cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = "AKIA4ID7ACTJ2NLLIRES"
+  secret_key = "vo8wCJvWCxnPnnCDEnzdEmKqT7tsXxOOW0eleAeA"
+  region     = "us-west-1"   # Replace with your desired AWS region
+}
+
+locals {
+  instance_type_map = {
+     "app"  = "t2.micro"
+     "db"   = "t2.medium"
+}
+}
+
+resource "aws_instance" "satheesh-db" {
+        ami           = "ami-00baaa26c63140022"   # Replace with your desired AMI ID
+        instance_type = local.instance_type_map["db"]
+        subnet_id     = "subnet-0536db43230a88608"     # Replace with your desired subnet ID
+        key_name      = "Satheeshkumar-aws1"             # Replace with your desired key pair name
+}
+ubuntu@ip-172-31-64-249:/aws$
+
+
+---------------------------------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = "AKIA4ID7ACTJ2NLLIRES"
+  secret_key = "vo8wCJvWCxnPnnCDEnzdEmKqT7tsXxOOW0eleAeA"
+  region     = "us-west-1"   # Replace with your desired AWS region
+}
+
+
+variable "instance_count" {
+  description = "test"
+  type = number
+  default = 3
+}
+variable "instance_count_max" {
+  description = "test"
+  type = number
+  default = 5
+}
+resource "aws_instance" "satheesh-db" {
+        ami           = "ami-00baaa26c63140022"   # Replace with your desired AMI ID
+        count         = min(var.instance_count,var.instance_count_max)
+        instance_type = "t3.large"
+        subnet_id     = "subnet-0536db43230a88608"     # Replace with your desired subnet ID
+        key_name      = "Satheeshkumar-aws1"             # Replace with your desired key pair name
+}
+ubuntu@ip-172-31-64-249:/aws$
+===============================================================
+variable "instance_name" {
+  description = "ec2 instacne name"
+  type = list(string)
+  default = ["web-ser-1" , "web-ser-2"]
+}
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d"  # Replace with your desired AMI ID
+  count = length(var.instance_name)
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+  tags = {
+    Name = var.instance_name[count.index]
+}
+}
+output "test" {
+  value = [for i in aws_instance.example: i.tags.Name if regex("web-ser-.*", i.tags.Name)]
+}
+
+----------------------------------------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = "AKIA4ID7ACTJ2NLLIRES"
+  secret_key = "vo8wCJvWCxnPnnCDEnzdEmKqT7tsXxOOW0eleAeA"
+  region     = "us-west-1"   # Replace with your desired AWS region
+}
+variable "instance_name" {
+  description = "ec2 instacne name"
+  type = list(string)
+  default = ["web-ser-1" , "web-ser-2"]
+}
+
+resource "aws_instance" "satheesh-db" {
+        ami           = "ami-00baaa26c63140022"   # Replace with your desired AMI ID
+        count         = length(var.instance_name)
+        instance_type = "t3.large"
+        subnet_id     = "subnet-0536db43230a88608"     # Replace with your desired subnet ID
+        key_name      = "Satheeshkumar-aws1"             # Replace with your desired key pair name
+        tags = {
+        Name = var.instance_name[count.index]
+        }
+}
+ubuntu@ip-172-31-64-249:/aws$
+================================================================
+variable "instance_names" {
+  description = "List of EC2 instance names"
+  type        =  string
+  default     = "web-server-1"
+}
+
+ 
+
+resource "aws_instance" "example" {
+  #count         = length(var.instance_names)
+  instance_type = "t2.micro"
+  ami           = "ami-12345678"
+  subnet_id     = "subnet-12345678"
+  tags = {
+    Name = var.instance_names
+  }
+}
+
+ 
+
+output "matching_instances" {
+#  value = [for inst in aws_instance.example : inst.tags.Name if regex("web-server-.*", inst.tags.Name)]
+value = replace(aws_instance.example.tags.Name, "web", "app")
+}
+----------------------------------------------------------------
+ubuntu@ip-172-31-64-249:/aws$ sudo terraform plan
+
+Terraform used the selected providers to generate the following execution plan.
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.example will be created
+  + resource "aws_instance" "example" {
+      + ami                                  = "ami-00baaa26c63140022"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t3.large"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "Satheeshkumar-aws1"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-0536db43230a88608"
+      + tags                                 = {
+          + "Name" = "web-server-1"
+        }
+      + tags_all                             = {
+          + "Name" = "web-server-1"
+        }
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + matching_instance = "app-server-1"
+
+────────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't guara
+ubuntu@ip-172-31-64-249:/aws$ cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = "AKIA4ID7ACTJ2NLLIRES"
+  secret_key = "vo8wCJvWCxnPnnCDEnzdEmKqT7tsXxOOW0eleAeA"
+  region     = "us-west-1"   # Replace with your desired AWS region
+}
+variable "instance_names" {
+  description = "List of EC2 instance names"
+  type        =  string
+  default     = "web-server-1"
+}
+resource "aws_instance" "example" {
+        ami           = "ami-00baaa26c63140022"   # Replace with your desired AM
+        instance_type = "t3.large"
+        subnet_id     = "subnet-0536db43230a88608"     # Replace with your desir
+        key_name      = "Satheeshkumar-aws1"             # Replace with your des
+tags = {
+    Name = var.instance_names
+  }
+}
+output "matching_instance" {
+        value = replace(aws_instance.example.tags.Name, "web", "app")
+}
+ubuntu@ip-172-31-64-249:/aws$
+-------------------------------------------------------------------------------
+
+Day - 9 - Monday [19/06/2023]
+----------------------------------
+terraform fmt main.tf
+
+-------------------------------
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami
+
+https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html
+--------------------------------------------------------------------------------
+
+
+data "aws_ami" "find_ami" {
+  most_recent = true
+  owners      = ["099720109477"]
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+}
+  output "available_ami" {
+    value = data.aws_ami.find_ami.id
+
+ 
+
+  }
+
+--------------------------------------------------------
+root@ip-172-31-64-249:/aws# terraform apply
+data.aws_ami.find_ami: Reading...
+data.aws_ami.find_ami: Read complete after 0s [id=ami-075138a50b1af6e68]
+
+Changes to Outputs:
+  + available_ami = "ami-075138a50b1af6e68"
+
+You can apply this plan to save these new output values to the Terraform state, without changing any real infrastructure.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yess
+
+Apply cancelled.
+root@ip-172-31-64-249:/aws# terraform apply
+data.aws_ami.find_ami: Reading...
+data.aws_ami.find_ami: Read complete after 0s [id=ami-075138a50b1af6e68]
+
+Changes to Outputs:
+  + available_ami = "ami-075138a50b1af6e68"
+
+You can apply this plan to save these new output values to the Terraform state, without changing any real infrastructure.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+available_ami = "ami-075138a50b1af6e68"
+root@ip-172-31-64-249:/aws#
+======================================================================================
+
+
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = "AKIA4ID7ACTJ2NLLIRES"
+  secret_key = "vo8wCJvWCxnPnnCDEnzdEmKqT7tsXxOOW0eleAeA"
+  region     = "us-west-1"   # Replace with your desired AWS region
+}
+data "aws_ami" "find_ami" {
+  most_recent = true
+  owners      = ["099720109477"]
+  filter {
+    name   = "architecture"
+    values = ["x86_64"]
+  }
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+}
+resource "aws_instance" "satheehkumar-aws" {
+        ami           = lookup(data.aws_ami.find_ami, "image_id",  "ami not found")
+        instance_type = "t3.large"
+        subnet_id     = "subnet-0536db43230a88608"     # Replace with your desired subnet ID
+        key_name      = "Satheeshkumar-aws1"             # Replace with your desired key pair name
+}
+
+output "available_ami" {
+    value = data.aws_ami.find_ami.id
+}
+root@ip-172-31-64-249:/aws#
+
+---------------------------------------------------------------------------
+
+root@ip-172-31-64-249:/aws# terraform apply
+data.aws_ami.find_ami: Reading...
+data.aws_ami.find_ami: Read complete after 0s [id=ami-075138a50b1af6e68]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the followi
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.satheehkumar-aws will be created
+  + resource "aws_instance" "satheehkumar-aws" {
+      + ami                                  = "ami-075138a50b1af6e68"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t3.large"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "Satheeshkumar-aws1"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-0536db43230a88608"
+      + tags_all                             = (known after apply)
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.satheehkumar-aws: Creating...
+aws_instance.satheehkumar-aws: Still creating... [10s elapsed]
+aws_instance.satheehkumar-aws: Creation complete after 13s [id=i-04a71f815de749335]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+available_ami = "ami-075138a50b1af6e68"
+root@ip-172-31-64-249:/aws#
+=======================================================================
+
+data "aws_availability_zones" "availzone" {
+  state = "available"
+  filter {
+   name = "zone-type"
+   values = ["availability-zone"]
+}
+}
+output "zones" {
+value = data.aws_availability_zones.availzone.names
+}
+--------------------------------------------------------
+Day - 10 - Tuesday [20/06/2023]
+----------------------------------
+
+[06:59] amit (Trainer) (Guest)
+
+data "aws_availability_zones" "available" {
+
+  state = "available"
+
+  filter {
+
+    name   = "zone-type"
+
+    values = ["availability-zone"]
+
+  }
+
+}
+
+output "available_zones" {
+
+  value = data.aws_availability_zones.available.names
+
+}
+
+variable "select_zone" {
+
+  description = "select -zone"
+
+  type        = string
+
+}
+
+ 
+
+resource "aws_instance" "example" {
+
+  ami               = "ami-0b8987a72eee28c3d" # Replace with your desired AMI ID
+
+  instance_type     = "t2.micro"
+
+  subnet_id         = "subnet-0e09953db95a5ac65" # Replace with your desired subnet ID
+
+  key_name          = "my-key-pair"              # Replace with your desired key pair name
+
+  availability_zone = var.select_zone
+
+  tags = {
+
+    Name = "instance1"
+
+  }
+
+}
+
+===============================================================================
+https://github.com/amitopenwriteup/terraform/blob/main/varinput.tf
+----------------------
+provider "aws" {
+  access_key = ""
+  secret_key = ""
+  region     = "us-west-2"   # Replace with your desired AWS region
+}
+
+data "aws_availability_zones" "available" {
+  state = "available"
+  filter {
+    name   = "zone-type"
+    values = ["availability-zone"]
+  }
+}
+output "available_zones" {
+  value = data.aws_availability_zones.available.names
+}
+
+variable "selected_zone" {
+  description = "Selected availability zone"
+  type        = string
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+  availability_zone = var.selected_zone
+  tags = {
+    Name        = "instance1"
+  }
+}
+===============================================
+
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ec2_spot_price
+--------------
+data "aws_ec2_spot_price" "example" {
+  instance_type     = "t3.medium"
+  availability_zone = "us-west-2a"
+
+  filter {
+    name   = "product-description"
+    values = ["Linux/UNIX"]
+  }
+}
+--------------------------
+
+data "aws_ec2_spot_price" "example" {
+  instance_type     = "t3.medium"
+  availability_zone = "us-west-2a"
+
+ 
+
+  filter {
+    name   = "product-description"
+    values = ["Linux/UNIX"]
+  }
+}
+output "spot-price" {
+  value = data.aws_ec2_spot_price.example.spot_price
+}
+----------------------------------------------------
+data "aws_key_pair" "example" {
+  key_name           = "my-key-pair"
+  include_public_key = true
+  filter {
+    name   = "key-name"
+    values = ["my-key-pair"]
+  }
+}
+
+ 
+
+output "fingerprint" {
+  value = data.aws_key_pair.example.fingerprint
+}
+
+ 
+
+output "name" {
+  value = data.aws_key_pair.example.key_name
+}
+
+ 
+
+output "id" {
+  value = data.aws_key_pair.example.id
+}
+=====================================================================
+resource "aws_iam_policy" "policy" {
+  name        = "custom-policy"
+  description = "creating custom polciy"
+  policy      = file("pol.json")
+}
+resource "aws_iam_role" "test_role" {
+  name = "test_role"
+
+ 
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+
+ 
+
+  tags = {
+    tag-key = "tag-value"
+  }
+}
+
+ 
+
+output "roles" {
+value = aws_iam_role.test_role
+}
+
+ 
+
+resource "aws_iam_role_policy_attachment" "test-attach" {
+  role      = aws_iam_role.test_role.name
+  policy_arn = aws_iam_policy.policy.arn
+}
+=============================================================================
+export TF_LOG=DEBUG
+
+export TF_LOG_PATH="/tmp/tf.log"
+
+
+https://developer.hashicorp.com/terraform/internals/debugging
+
+===========================================================================
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+
+ 
+
+  tags = {
+    "Name" = format("MyInstance-%s", formatdate("YYYYMMDD", timestamp()))
+  }
+}
+terraform taint aws_instance.example
+
+terraform graph|dot -Tsvg > test.svg
+-----------------------------------------------------------------------
+
+
+root@ip-172-31-64-249:/aws# terraform apply
+aws_iam_role.test1_role: Refreshing state... [id=test1_role]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_policy.policy will be created
+  + resource "aws_iam_policy" "policy" {
+      + arn         = (known after apply)
+      + description = "creating custom polciy"
+      + id          = (known after apply)
+      + name        = "custom-policy"
+      + name_prefix = (known after apply)
+      + path        = "/"
+      + policy      = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action   = [
+                          + "eks:ListNodegroups",
+                          + "eks:DescribeFargateProfile",
+                          + "eks:ListTagsForResource",
+                          + "eks:ListAddons",
+                          + "eks:DescribeAddon",
+                          + "eks:ListFargateProfiles",
+                          + "eks:DescribeNodegroup",
+                          + "eks:DescribeIdentityProviderConfig",
+                          + "eks:ListUpdates",
+                          + "eks:DescribeUpdate",
+                          + "eks:AccessKubernetesApi",
+                          + "eks:DescribeCluster",
+                          + "eks:ListClusters",
+                          + "eks:DescribeAddonVersions",
+                          + "eks:ListIdentityProviderConfigs",
+                        ]
+                      + Effect   = "Allow"
+                      + Resource = "*"
+                      + Sid      = "VisualEditor0"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + policy_id   = (known after apply)
+      + tags_all    = (known after apply)
+    }
+
+  # aws_iam_role_policy_attachment.test1-attach will be created
+  + resource "aws_iam_role_policy_attachment" "test1-attach" {
+      + id         = (known after apply)
+      + policy_arn = (known after apply)
+      + role       = "test1_role"
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_iam_policy.policy: Creating...
+aws_iam_policy.policy: Creation complete after 0s [id=arn:aws:iam::842079933651:policy/custom-policy]
+aws_iam_role_policy_attachment.test1-attach: Creating...
+aws_iam_role_policy_attachment.test1-attach: Creation complete after 1s [id=test1_role-20230620121733574900000001]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+roles = {
+  "arn" = "arn:aws:iam::842079933651:role/test1_role"
+  "assume_role_policy" = "{\"Statement\":[{\"Action\":\"sts:AssumeRole\",\"Effect\":\"Allow\",\"Principal\":{\"Service\":\"ec2.am":\"\"}],\"Version\":\"2012-10-17\"}"
+  "create_date" = "2023-06-20T12:13:15Z"
+  "description" = ""
+  "force_detach_policies" = false
+  "id" = "test1_role"
+  "inline_policy" = toset([])
+  "managed_policy_arns" = toset([])
+  "max_session_duration" = 3600
+  "name" = "test1_role"
+  "name_prefix" = ""
+  "path" = "/"
+  "permissions_boundary" = tostring(null)
+  "tags" = tomap({
+    "tag-key" = "tag-value"
+  })
+  "tags_all" = tomap({
+    "tag-key" = "tag-value"
+  })
+  "unique_id" = "AROA4ID7ACTJUZIGRXBPY"
+}
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = "AKIA4ID7ACTJ2NLLIRES"
+  secret_key = "vo8wCJvWCxnPnnCDEnzdEmKqT7tsXxOOW0eleAeA"
+  region     = "us-west-1" # Replace with your desired AWS region
+}
+resource "aws_iam_policy" "policy" {
+  name        = "custom-policy"
+  description = "creating custom polciy"
+  policy      = file("pol.json")
+}
+resource "aws_iam_role" "test1_role" {
+  name = "test1_role"
+
+
+
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "ec2.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
+
+
+
+  tags = {
+    tag-key = "tag-value"
+  }
+}
+
+
+
+output "roles" {
+value = aws_iam_role.test1_role
+}
+
+
+
+resource "aws_iam_role_policy_attachment" "test1-attach" {
+  role      = aws_iam_role.test1_role.name
+  policy_arn = aws_iam_policy.policy.arn
+}
+root@ip-172-31-64-249:/aws# cat pol.json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "eks:ListNodegroups",
+                "eks:DescribeFargateProfile",
+                "eks:ListTagsForResource",
+                "eks:ListAddons",
+                "eks:DescribeAddon",
+                "eks:ListFargateProfiles",
+                "eks:DescribeNodegroup",
+                "eks:DescribeIdentityProviderConfig",
+                "eks:ListUpdates",
+                "eks:DescribeUpdate",
+                "eks:AccessKubernetesApi",
+                "eks:DescribeCluster",
+                "eks:ListClusters",
+                "eks:DescribeAddonVersions",
+                "eks:ListIdentityProviderConfigs"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+root@ip-172-31-64-249:/aws#
+==============================================
+https://github.com/amitopenwriteup/terraform
+============================================
+Day - 11 - Wednesday [21/06/2023]
+----------------------------------
+
+variable "instance_ami" {
+  type = map(string)
+  default = {
+    ami1 = "ami-0b8987a72eee28c3d"
+    ami2 = "ami-0b8987a72eee28c3d"
+  }
+}
+resource "aws_instance" "example" {
+  for_each      = var.instance_ami
+  ami           = each.value # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65" # Replace with your desired subnet ID
+  key_name      = "my-key-pair"              # Replace with your desired key pair name
+}
+=======================================================
+
+https://developer.hashicorp.com/terraform/language/values/variables
+
+========================================================================
+variable "awsinstance" {
+  type = map(object({
+    ami           = string
+    instance_type = string
+    subnet_id     = string
+  }))
+  default = {
+    instance1 = {
+      ami           = "ami-0b8987a72eee28c3d"
+      instance_type = "t2.micro"
+      subnet_id     = "subnet-0e09953db95a5ac65"
+    }
+    instanc2 = {
+      ami           = "ami-0b8987a72eee28c3d"
+      instance_type = "t2.large"
+      subnet_id     = "subnet-0e09953db95a5ac65"
+    }
+  }
+}
+
+ 
+
+resource "aws_instance" "example" {
+  for_each      = var.awsinstance
+  ami           = each.value.ami # Replace with your desired AMI ID
+  instance_type = each.value.instance_type
+  subnet_id     = each.value.subnet_id # Replace with your desired subnet ID
+  key_name      = "my-key-pair"        # Replace with your desired key pair name
+}
+==============================================================================
+
+variable "provide" {
+  type = map(object({
+    access_key = string
+  secret_key = string }))
+
+ 
+
+  default = {
+
+ 
+
+    access_key = "AKIA4ID7ACTJUI4GUVRZ"
+    secret_key = "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"
+  }
+
+ 
+
+}
+==========================================================
+
+root@ip-172-31-64-249:/aws# cat variable.tf
+variable "provide" {
+        type = map(string)
+        default = {
+                access_key = "AKIA4ID7ACTJ2NLLIRES"
+                secret_key = "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"
+        }
+}
+root@ip-172-31-64-249:/aws#
+
+
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = var.provide.access_key
+  secret_key = var.provide.secret_key
+  region     = "us-west-1"
+}
+resource "aws_instance" "satheehkumar-aws1" {
+        ami           = "ami-00baaa26c63140022"
+        instance_type = "t3.medium"
+         subnet_id     = "subnet-0536db43230a88608" # Replace with your desired subnet ID
+         key_name      = "Satheeshkumar-aws1"       # Replace with your desired key pair name
+        tags = {
+                "Name" = format("satheeshkumar-aws-%s", formatdate("YYYYMMDD", timestamp()))
+  }
+}
+
+root@ip-172-31-64-249:/aws#
+==================================================================================================
+resource "aws_security_group" "example" {
+  name        = "example-security-group"
+  description = "Example security group"
+  dynamic "ingress" {
+    for_each = [443, 80, 8080]
+    iterator = tmp
+    content {
+      from_port   = tmp.value
+      to_port     = tmp.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+}
+================================================
+variable "provide" {
+  type = map(object({
+    access_key = string
+  secret_key = string }))
+  default = {
+    access_key = "AKIA4ID7ACTJUI4GUVRZ"
+    secret_key = "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"
+  }
+}
+=============================================
+variable "provide" {
+  type = map(object({
+    access_key = string
+  secret_key = string }))
+  default = {
+    access_key = "AKIA4ID7ACTJUI4GUVRZ"
+    secret_key = "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"
+  }
+}
+------------------------------------------------
+variable "awsinstance" {
+  type = map(object({
+    ami           = string
+    instance_type = string
+    subnet_id     = string
+  }))
+  default = {
+    instance1 = {
+      ami           = "ami-0b8987a72eee28c3d"
+      instance_type = "t2.micro"
+      subnet_id     = "subnet-0e09953db95a5ac65"
+    }
+    instanc2 = {
+      ami           = "ami-0b8987a72eee28c3d"
+      instance_type = "t2.large"
+      subnet_id     = "subnet-0e09953db95a5ac65"
+    }
+  }
+}
+resource "aws_instance" "example" {
+  for_each      = var.awsinstance
+  ami           = each.value.ami # Replace with your desired AMI ID
+  instance_type = each.value.instance_type
+  subnet_id     = each.value.subnet_id # Replace with your desired subnet ID
+  key_name      = "my-key-pair"        # Replace with your desired key pair name
+}
+--------------------------------------------------------
+variable "instance_ami" {
+  type = map(string)
+  default = {
+    ami1 = "ami-0b8987a72eee28c3d"
+    ami2 = "ami-0b8987a72eee28c3d"
+  }
+}
+resource "aws_instance" "example" {
+  for_each      = var.instance_ami
+  ami           = each.value # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65" # Replace with your desired subnet ID
+  key_name      = "my-key-pair"              # Replace with your desired key pair name
+}
+----------------------------------------------------------
+Day - 12 - Thrusday [22/06/2023]
+----------------------------------
+
+access_key = var.instances["access_code"].access_key
+secret_key = var.instances["access_code"].secret_key
+
+==========================================================
+root@ip-172-31-64-249:/aws# cat variable.tf
+variable "provide" {
+  type = map(string)
+  default = {
+    access_key = "AKIA4ID7ACTJ2NLLIRES"
+    secret_key = "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"
+  }
+}
+variable "ebsblock" {
+  type = map(object({
+    device_name = string
+    volume_type = string
+    volume_size = number
+  }))
+  default = {
+    ebs1 = {
+      device_name = "/dev/sde"
+      volume_type = "gp2"
+      volume_size = 10
+    }
+    ebs2 = {
+      device_name = "/dev/sdf"
+      volume_type = "gp3"
+      volume_size = 8
+    }
+  }
+}
+root@ip-172-31-64-249:/aws#
+
+=============================================================
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d" # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65" # Replace with your desired subnet ID
+  key_name      = "my-key-pair"              # Replace with your desired key pair name
+  dynamic "ebs_block_device" {
+    for_each = var.ebsblock
+    iterator = ebs
+    content {
+      device_name = ebs.value.device_name
+      volume_type = ebs.value.volume_type
+      volume_size = ebs.value.volume_size
+    }
+  }
+}
+
+==============================================================
+https://github.com/amitopenwriteup/terraform/blob/main/ebsdyanmic.tf
+-------------------------------------------------------------
+variable "instance_type" {
+  type = set(string)
+  default = ["t2.micro","t2,large","t2.micro"]
+}
+resource "aws_instance" "example" {
+  count = length(var.instance_type)
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  instance_type = tolist(var.instance_type)[count.index]
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+}
+==========================================
+variable "instance_type" {
+  type = set(string)
+  default = ["t2.micro","t2,large","t2.micro"]
+}
+resource "aws_instance" "example" {
+  count = length(var.instance_type)
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  instance_type = tolist(var.instance_type)[count.index]
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key-pair"             # Replace with your desired key pair name
+}
+==================================================================
+
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = var.provide.access_key
+  secret_key = var.provide.secret_key
+  region     = "us-west-1"
+}
+variable "instance_type" {
+  type = set(string)
+  default = ["t2.micro","t2.large","t2.micro"]
+}
+
+resource "aws_instance" "example" {
+        count = length(var.instance_type)
+  ami           = "ami-00baaa26c63140022"
+  instance_type = tolist(var.instance_type)[count.index]
+  subnet_id     = "subnet-0536db43230a88608" # Replace with your desired subnet ID
+  key_name      = "Satheeshkumar-aws1"       # Replace with your desired key pair name
+  dynamic "ebs_block_device" {
+    for_each = var.ebsblock
+    iterator = ebs
+    content {
+      device_name = ebs.value.device_name
+      volume_type = ebs.value.volume_type
+      volume_size = ebs.value.volume_size
+    }
+  }
+        tags = {
+    "Name" = format("satheeshkumar-aws-%s", formatdate("YYYYMMDD", timestamp()))
+ }
+}
+root@ip-172-31-64-249:/aws#
+
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = var.provide.access_key
+  secret_key = var.provide.secret_key
+  region     = "us-west-1"
+}
+variable "instance_type" {
+  type = set(string)
+  default = ["t2.micro","t2.large","t2.micro"]
+}
+
+resource "aws_instance" "example" {
+        count = length(var.instance_type)
+  ami           = "ami-00baaa26c63140022"
+  instance_type = tolist(var.instance_type)[count.index]
+  subnet_id     = "subnet-0536db43230a88608" # Replace with your desired subnet ID
+  key_name      = "Satheeshkumar-aws1"       # Replace with your desired key pair name
+  dynamic "ebs_block_device" {
+    for_each = var.ebsblock
+    iterator = ebs
+    content {
+      device_name = ebs.value.device_name
+      volume_type = ebs.value.volume_type
+      volume_size = ebs.value.volume_size
+    }
+  }
+        tags = {
+    "Name" = format("satheeshkumar-aws-%s", formatdate("YYYYMMDD", timestamp()))
+ }
+}
+root@ip-172-31-64-249:/aws#
+
+=================================================================================
+provider "aws" {
+  access_key = "AKIA43KKKGRBTHIR2T67"
+  secret_key = "f/XnR+tAAtuhCLLfeOW+V6Qg1a0cc3ZzTK0vRyhS"
+  region     = "us-west-2" # Replace with your desired AWS region
+}
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d" # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65" # Replace with your desired subnet ID
+  key_name      = "my-key-pair"              # Replace with your desired key pair name
+  provisioner "local-exec" {
+    command = "echo 'welcome'"
+  }
+}
+===================================================
+
+root@ip-172-31-64-249:/aws# terraform apply
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_instance.example[0] will be created
+  + resource "aws_instance" "example" {
+      + ami                                  = "ami-00baaa26c63140022"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.large"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "Satheeshkumar-aws1"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-0536db43230a88608"
+      + tags                                 = (known after apply)
+      + tags_all                             = (known after apply)
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = true
+          + device_name           = "/dev/sde"
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 10
+          + volume_type           = "gp2"
+        }
+      + ebs_block_device {
+          + delete_on_termination = true
+          + device_name           = "/dev/sdf"
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 8
+          + volume_type           = "gp3"
+        }
+    }
+
+  # aws_instance.example[1] will be created
+  + resource "aws_instance" "example" {
+      + ami                                  = "ami-00baaa26c63140022"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = (known after apply)
+      + availability_zone                    = (known after apply)
+      + cpu_core_count                       = (known after apply)
+      + cpu_threads_per_core                 = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + get_password_data                    = false
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t2.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = "Satheeshkumar-aws1"
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + source_dest_check                    = true
+      + subnet_id                            = "subnet-0536db43230a88608"
+      + tags                                 = (known after apply)
+      + tags_all                             = (known after apply)
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = false
+      + vpc_security_group_ids               = (known after apply)
+
+      + ebs_block_device {
+          + delete_on_termination = true
+          + device_name           = "/dev/sde"
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 10
+          + volume_type           = "gp2"
+        }
+      + ebs_block_device {
+          + delete_on_termination = true
+          + device_name           = "/dev/sdf"
+          + encrypted             = (known after apply)
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + snapshot_id           = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 8
+          + volume_type           = "gp3"
+        }
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_instance.example[1]: Creating...
+aws_instance.example[0]: Creating...
+aws_instance.example[1]: Still creating... [10s elapsed]
+aws_instance.example[0]: Still creating... [10s elapsed]
+aws_instance.example[1]: Still creating... [20s elapsed]
+aws_instance.example[0]: Still creating... [20s elapsed]
+aws_instance.example[0]: Provisioning with 'local-exec'...
+aws_instance.example[0] (local-exec): Executing: ["/bin/sh" "-c" "echo 'welcome'"]
+aws_instance.example[0] (local-exec): welcome
+aws_instance.example[0]: Creation complete after 21s [id=i-08b20dfdba6560541]
+aws_instance.example[1]: Provisioning with 'local-exec'...
+aws_instance.example[1] (local-exec): Executing: ["/bin/sh" "-c" "echo 'welcome'"]
+aws_instance.example[1] (local-exec): welcome
+aws_instance.example[1]: Creation complete after 21s [id=i-0144c79b3666e7e1f]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+root@ip-172-31-64-249:/aws#
+======================================================================================
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = var.provide.access_key
+  secret_key = var.provide.secret_key
+  region     = "us-west-1"
+}
+variable "instance_type" {
+  type = set(string)
+  default = ["t2.micro","t2.large","t2.micro"]
+}
+
+resource "aws_instance" "example" {
+        count = length(var.instance_type)
+  ami           = "ami-00baaa26c63140022"
+  instance_type = tolist(var.instance_type)[count.index]
+  subnet_id     = "subnet-0536db43230a88608" # Replace with your desired subnet ID
+  key_name      = "Satheeshkumar-aws1"       # Replace with your desired key pair name
+  dynamic "ebs_block_device" {
+    for_each = var.ebsblock
+    iterator = ebs
+    content {
+      device_name = ebs.value.device_name
+      volume_type = ebs.value.volume_type
+      volume_size = ebs.value.volume_size
+    }
+  }
+        provisioner "local-exec" {
+                 command = "echo 'welcome'"
+  }
+        tags = {
+    "Name" = format("satheeshkumar-aws-%s", formatdate("YYYYMMDD", timestamp()))
+ }
+}
+root@ip-172-31-64-249:/aws#
+=====================================================
+resource "null_resource" "test" {
+  provisioner "local-exec" {
+    command = "echo 'welcome to terraform' "
+  }
+}
+
+variable "testing" {
+  type = string
+  default = "testing"
+}
+resource "null_resource" "test" {
+  triggers = {
+    trig_var = var.testing
+}
+  provisioner "local-exec" {
+    command = "echo 'welcome to terraform' "
+  }
+}
+
+
+provisioner "local-exec" {     command = ... by amit (Trainer) (Guest)
+amit (Trainer) (Guest)
+07:20
+
+provisioner "local-exec" {
+    command = "print  \"Hello world\\n\""
+    interpreter = ["perl", "-e"]
+  }
+
+
+  provisioner "local-exec" {     command ... by amit (Trainer) (Guest)
+amit (Trainer) (Guest)
+07:28
+
+  provisioner "local-exec" {
+    command = "ls -ltr"
+    working_dir = "/etc"
+  }
+
+
+resource "aws_instance" "example" {   ami... by amit (Trainer) (Guest)
+amit (Trainer) (Guest)
+07:45
+
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key"
+    connection {
+    type     = "ssh"
+    user     = "ubuntu"
+    private_key = file("my-key.pem")
+    host     = self.public_ip
+  }
+  provisioner "remote-exec" {
+   inline = [
+     "echo 'Welcome to terraform'"
+  ]
+}
+}
+
+
+=================================================
+Day - 13 - Friday [23/06/2023]
+----------------------------------
+
+resource "null_resource" "test" {
+  provisioner "local-exec" {
+    command = "echo 'welcome to terraform' "
+  }
+}
+---------------------------------------------------
+variable "testing" {
+  type = string
+  default = "testing"
+}
+resource "null_resource" "test" {
+  triggers = {
+    trig_var = var.testing
+}
+  provisioner "local-exec" {
+    command = "echo 'welcome to terraform' "
+  }
+}
+------------------------------------
+provisioner "local-exec" {
+    command = "print  \"Hello world\\n\""
+    interpreter = ["perl", "-e"]
+  }
+------------------------
+provisioner "local-exec" {
+    command = "ls -ltr"
+    working_dir = "/etc"
+  }
+-----------------------
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d"   # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"     # Replace with your desired subnet ID
+  key_name      = "my-key"
+    connection {
+    type     = "ssh"
+    user     = "ubuntu"
+    private_key = file("my-key.pem")
+    host     = self.public_ip
+  }
+  provisioner "remote-exec" {
+   inline = [
+     "echo 'Welcome to terraform'"
+  ]
+}
+}
+----------------------------
+Day - 14 - Monday [26/06/2023]
+----------------------------------
+resource "null_resource" "test-remote" {
+  provisioner "remote-exec" {
+     inline = [
+      "sudo adduser --disabled-password test1 --gecos ''",
+      "sudo usermod -aG sudo test1"
+    ]
+    connection {
+    type        = "ssh"
+    user        = "ec2-user"
+    private_key = file("satheesh.pem")
+    host        = "204.236.162.5"
+  }
+}
+}
+
+------------------------------------
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d" # Replace with your desired AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65" # Replace with your desired subnet ID
+  key_name      = "my-key"                   # Replace with your desired key pair name
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("my-key.pem")
+    host        = self.public_ip
+  }
+  provisioner "file" {
+   source = "date.sh"
+   destination = "/tmp/date.sh"
+}
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/date.sh",
+     "/tmp/date.sh"
+    ]
+  }
+}
+
+https://stackoverflow.com/questions/2150882/how-to-automatically-add-user-account-and-password-with-a-bash-script
+--------------------------------
+https://stackoverflow.com/questions/60273378/instance-provisioning-with-remote-exec-in-terraform-docs-not-working-on-macos-e
+==============================
+
+
+Day - 15 - Tuesday[27/06/2023]
+----------------------------------
+resource "aws_security_group" "example" {
+  name        = "example-security-group"
+  description = "Example security group"
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+resource "aws_instance" "example" {
+  ami           = "ami-0b8987a72eee28c3d"
+  instance_type = "t2.micro"
+  subnet_id     = "subnet-0e09953db95a5ac65"
+  vpc_security_group_ids = [aws_security_group.example.id]
+  key_name      = "my-key"
+  connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = file("my-key.pem")
+    host        = self.public_ip
+  }
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'Hello, World!'",
+      "echo 'This command is executed remotely on the EC2 instance.'",
+    ]
+  }
+}
+========================================================================
+root@jenkins:~/aws/child# cat resource.tf
+resource "aws_instance" "example" {
+  ami = var.ami_id
+  instance_type = var.instance_type
+  subnet_id = var.subnet_id
+}
+root@jenkins:~/aws/child# cat
+resource.tf   variables.tf
+root@jenkins:~/aws/child# cat resource.tf
+resource "aws_instance" "example" {
+  ami = var.ami_id
+  instance_type = var.instance_type
+  subnet_id = var.subnet_id
+}
+------------------------------------------------
+module "ec2_instance" {
+  source = "./child"
+  instance_type = "t2.micro"
+  ami_id = "ami-0b8987a72eee28c3d"
+  subnet_id     = "subnet-0e09953db95a5ac65"
+}
+----------------------------------------
+variable "instance_type" {
+  description = "The EC2 instance type"
+  type        = string
+}
+variable "subnet_id" {
+  description = "The subnet"
+  type        = string
+}
+variable "ami_id" {
+  description = "ami_id"
+  type        = string
+}
+-----------------------------------
+module "ec2_instance1" {
+  source = "./child"
+  instance_type = "t2.large"
+  ami_id = "ami-0b8987a72eee28c3d"
+  subnet_id     = "subnet-0e09953db95a5ac65"
+}
+output "instanceid" {
+  value = module.ec2_instance1.inst_id
+}
+--------------------------------
+output "inst_id" {
+  value = aws_instance.example.id
+}
+#module.<name of module>.<name of output parameter>
+-----------------------------------
+module "ec2_instance1" {
+  source = "github.com/amitopenwriteup/tfsource"
+  instance_type = "t2.large"
+  ami_id = "ami-0b8987a72eee28c3d"
+  subnet_id     = "subnet-0e09953db95a5ac65"
+}
+-----------------------------------
+[07:57] amit (Trainer) (Guest)
+
+2091  git init
+
+2092  git add .
+
+2093  git commit -m "adding module"
+
+2094  git status
+
+
+[07:57] amit (Trainer) (Guest)
+
+2101  git branch -M main
+
+2102  git remote add origin git@github.com:amitopenwriteup/tfsource.git
+
+2103  git push -u origin main
+
+
+[07:58] amit (Trainer) (Guest)
+
+"github.com/amitopenwriteup/tfsource"
+============================================================================
+.gitignore file
+
+*.tfstate
+*.tfstate.*
+*.tfplan
+*.tfout
+.terraform/
+.terraform.tfstate.d/
+--------------------------------
+
+git add .
+git commit -m "adding gitignore"
+git push origin main
+
+cp /aws/terraform.tfstate /aws/child
+
+git add .
+git commit -m "trying"
+git push origin main
+------------------------------------------
+root@ip-172-31-64-249:/aws# terraform workspace new kumar
+Created and switched to workspace "kumar"!
+
+You're now on a new, empty workspace. Workspaces isolate their state,
+so if you run "terraform plan" Terraform will not see any existing state
+for this configuration.
+root@ip-172-31-64-249:/aws# terraform workspace list
+  default
+* kumar
+  satheesh
+
+root@ip-172-31-64-249:/aws#
+-----------------------------------------
+root@ip-172-31-64-249:/aws# terraform workspace apply
+Usage: terraform [global options] workspace
+
+  new, list, show, select and delete Terraform workspaces.
+
+Subcommands:
+    delete    Delete a workspace
+    list      List Workspaces
+    new       Create a new workspace
+    select    Select a workspace
+    show      Show the name of the current workspace
+root@ip-172-31-64-249:/aws# terraform show
+No state.
+root@ip-172-31-64-249:/aws#
+
+root@ip-172-31-64-249:/aws# terraform workspace show
+kumar
+root@ip-172-31-64-249:/aws#
+root@ip-172-31-64-249:/aws# terraform workspace list
+  default
+* kumar
+  satheesh
+
+root@ip-172-31-64-249:/aws#
+
+=============================================
+2197  terraform workspace new qa
+2198  cd terraform.tfstate.d/
+2199  ls
+2200  cd ..
+2201  terraform workspace list
+2202  terraform workspace
+2203  terraform workspace select dev
+2204  terraform workspace list
+2205  terraform workspace select qa
+2206  terraform apply
+2207  terraform workspace select dev
+2208  terraform apply
+2209  history
+2210  terraform workspace select dev
+2211  terraform workspace delete dev
+-----------------------------------------------
+
+root@ip-172-31-64-249:/aws/terraform.tfstate.d# pwd
+/aws/terraform.tfstate.d
+root@ip-172-31-64-249:/aws/terraform.tfstate.d# ls -ltr
+total 8
+drwxr-xr-x 2 root root 4096 Jun 28 10:15 satheesh
+drwxr-xr-x 2 root root 4096 Jun 28 10:19 kumar
+root@ip-172-31-64-249:/aws/terraform.tfstate.d#
+
+root@ip-172-31-64-249:/aws/terraform.tfstate.d# terraform workspace list
+* default
+
+root@ip-172-31-64-249:/aws/terraform.tfstate.d# cd ./..
+root@ip-172-31-64-249:/aws# terraform workspace list
+  default
+* kumar
+  satheesh
+
+root@ip-172-31-64-249:/aws#
+
+===============================================
+terraform import aws_instance.example i-097ef046c86b5c2fa
+================================================
+
+root@ip-172-31-64-249:/aws# terraform import aws_instance.example i-04b50d74a5db3d600
+aws_instance.example: Importing from ID "i-04b50d74a5db3d600"...
+aws_instance.example: Import prepared!
+  Prepared aws_instance for import
+aws_instance.example: Refreshing state... [id=i-04b50d74a5db3d600]
+
+Import successful!
+
+The resources that were imported are shown above. These resources are now in
+your Terraform state and will henceforth be managed by Terraform.
+
+root@ip-172-31-64-249:/aws#
+===================================================================
+
+S3 BUCKET
+==============
+resource "aws_s3_bucket" "bucket" {
+  bucket = "SATHEESH-terraform-state-backend"
+  tags = {
+    Name = "SATHEESH Remote Terraform State Store"
+  }
+}
+resource "aws_s3_bucket_policy" "bucket_policy" {
+  bucket = aws_s3_bucket.bucket.id 
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "<provide aws user arn>"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": "arn:aws:iam::842079933651:user/user13"
+    }
+  ]
+}
+EOF
+}
+
+arn:aws:s3:::satheesh21-terraform-state-backend
+
+---------------------------------------------
+https://developer.hashicorp.com/terraform/language/settings/backends/s3
+--------------------------------------------------------------------
+resource "aws_dynamodb_table" "terraform-lock" {
+    name           = "terraform_state"
+    read_capacity  = 5
+    write_capacity = 5
+    hash_key       = "LockID"
+    attribute {
+        name = "LockID"
+        type = "S"
+====================================
+
+
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1687953223148",
+    "Statement": [
+        {
+            "Sid": "Stmt1687953218933",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::842079933651:user/user13"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::satheesh21-terraform-state-backend"
+        }
+    ]
+}
+
+---------------------------------
+
+root@ip-172-31-64-249:/aws# cat s3.tf
+resource "aws_s3_bucket" "bucket" {
+  bucket = "satheesh21-terraform-state-backend"
+  tags = {
+    Name = "satheesh21 Remote Terraform State Store"
+  }
+}
+resource "aws_s3_bucket_policy" "bucket_policy" {
+  bucket = aws_s3_bucket.bucket.id
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1687953223148",
+    "Statement": [
+        {
+            "Sid": "Stmt1687953218933",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::842079933651:user/user13"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::satheesh21-terraform-state-backend"
+        }
+    ]
+}
+EOF
+}
+resource "aws_dynamodb_table" "terraform-lock" {
+    name           = "terraform_state"
+    read_capacity  = 5
+    write_capacity = 5
+    hash_key       = "LockID"
+    attribute {
+        name = "LockID"
+        type = "S"
+}
+}
+root@ip-172-31-64-249:/aws#
+====================================================================================
+
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = var.provide.access_key
+  secret_key = var.provide.secret_key
+  region     = "us-west-1"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0dc50976db563e50a"
+  instance_type = "t3.medium"
+  subnet_id     = "subnet-0536db43230a88608" # Replace with your desired subnet ID
+  key_name      = "Satheeshkumar-aws1"       # Replace with your desired key pair name
+        tags = {
+                Name = "satheesh-aws"
+                Environment = "Production"
+}
+}
+/*
+module "ec2_instance" {
+  source = "github.com/vvsjsatheesh/tfsource"
+  instance_type = "t2.micro"
+  ami_id = "ami-0dc50976db563e50a"
+  subnet_id     = "subnet-0536db43230a88608"
+}
+module "ec2_instance1" {
+  source = "github.com/vvsjsatheesh/tfsource"
+  instance_type = "t2.large"
+  ami_id = "ami-0dc50976db563e50a"
+  subnet_id     = "subnet-0536db43230a88608"
+}
+output "instanceid" {
+  value = module.ec2_instance.inst_id
+}
+#module.<name of module>.<name of output parameter>
+*/
+root@ip-172-31-64-249:/aws#
+
+========================================
+
+terraform {
+  backend "s3" {
+    bucket         =  "satheesh21-terraform-state-backend"
+    key            = "terraform.tfstate"
+    region         = "us-west-2"  # Update with your desired AWS region
+    encrypt        = true
+    dynamodb_table =  "terraform_state"
+  }
+}
+
+---------------------------------------
+terraform init --migrate-state
+=====================================
+
+root@ip-172-31-64-249:/aws# cat s3.tf
+resource "aws_s3_bucket" "bucket" {
+  bucket = "satheesh21-terraform-state-backend"
+  tags = {
+    Name = "satheesh21 Remote Terraform State Store"
+  }
+}
+resource "aws_s3_bucket_policy" "bucket_policy" {
+  bucket = aws_s3_bucket.bucket.id
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1687953223148",
+    "Statement": [
+        {
+            "Sid": "Stmt1687953218933",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::842079933651:user/user13"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::satheesh21-terraform-state-backend"
+        }
+    ]
+}
+EOF
+}
+resource "aws_dynamodb_table" "terraform-lock" {
+    name           = "terraform_state21"
+    read_capacity  = 5
+    write_capacity = 5
+    hash_key       = "LockID"
+    attribute {
+        name = "LockID"
+        type = "S"
+}
+}
+root@ip-172-31-64-249:/aws#
+=============================================================
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" {
+  access_key = var.provide.access_key
+  secret_key = var.provide.secret_key
+  region     = "us-west-1"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0dc50976db563e50a"
+  instance_type = "t3.medium"
+  subnet_id     = "subnet-0536db43230a88608" # Replace with your desired subnet ID
+  key_name      = "Satheeshkumar-aws1"       # Replace with your desired key pair name
+        tags = {
+                Name = "satheesh-aws"
+                Environment = "Production"
+}
+}
+terraform {
+  backend "s3" {
+    bucket         =  "satheesh21-terraform-state-backend"
+    key            = "terraform.tfstate"
+    region         = "us-west-1"  # Update with your desired AWS region
+    encrypt        = true
+    dynamodb_table =  "terraform_state21"
+  }
+}
+root@ip-172-31-64-249:/aws#
+
+root@ip-172-31-64-249:/aws# cat s3.tf
+resource "aws_s3_bucket" "bucket" {
+  bucket = "satheesh21-terraform-state-backend"
+  tags = {
+    Name = "satheesh21 Remote Terraform State Store"
+  }
+}
+resource "aws_s3_bucket_policy" "bucket_policy" {
+  bucket = aws_s3_bucket.bucket.id
+
+  policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1687953223148",
+    "Statement": [
+        {
+            "Sid": "Stmt1687953218933",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::842079933651:user/user13"
+            },
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::satheesh21-terraform-state-backend"
+        }
+    ]
+}
+EOF
+}
+resource "aws_dynamodb_table" "terraform-lock" {
+    name           = "terraform_state21"
+    read_capacity  = 5
+    write_capacity = 5
+    hash_key       = "LockID"
+    attribute {
+        name = "LockID"
+        type = "S"
+}
+}
+root@ip-172-31-64-249:/aws#
+
+===========================================================
+Day - 17 - Friday[30/06/2023]
+----------------------------------
+
+aws configure --profile profile2
+
+
+
+
+provider "aws" {
+
+   profile = "profile2"
+
+   region = "us-west-2"
+
+}
+----------------------------
+aws s3 rm s3://satheesh21-terraform-state-backend --recursive
+ aws s3 rb s3://satheesh21-terraform-state-backend
+================================================================
+
+root@ip-172-31-64-249:/aws# aws configure --profile profile2
+AWS Access Key ID [****************IRES]:
+AWS Secret Access Key [****************eAeA]:
+Default region name [us-west-1]:
+Default output format [None]:
+
+
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+}
+provider "aws" {
+   profile = "profile2"
+   region = "us-west-1"
+
+}
+/*
+provider "aws" {
+  access_key = var.provide.access_key
+  secret_key = var.provide.secret_key
+  region     = "us-west-1"
+}
+*/
+resource "aws_instance" "example" {
+  ami           = "ami-0dc50976db563e50a"
+  instance_type = "t3.medium"
+  subnet_id     = "subnet-0536db43230a88608" # Replace with your desired subnet ID
+  key_name      = "Satheeshkumar-aws1"       # Replace with your desired key pair name
+        tags = {
+                Name = "satheesh-aws"
+                Environment = "Production"
+}
+}
+root@ip-172-31-64-249:/aws#
+========================================================================================
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install vault
+--------------------------------------------
+root@ip-172-31-64-249:/aws# vault server -dev
+==> Vault server configuration:
+
+             Api Address: http://127.0.0.1:8200
+                     Cgo: disabled
+         Cluster Address: https://127.0.0.1:8201
+   Environment Variables: GODEBUG, HOME, LANG, LESSCLOSE, LESSOPEN, LOGNAME, LS_COLORS, MAIL, OLDPWD, PATH, PWD, SHELL, SHLVL, TERM, USER, XDRS, _
+              Go Version: go1.20.5
+              Listener 1: tcp (addr: "127.0.0.1:8200", cluster address: "127.0.0.1:8201", max_request_duration: "1m30s", max_request_size: "3 tls: "disabled")
+               Log Level:
+                   Mlock: supported: true, enabled: false
+           Recovery Mode: false
+                 Storage: inmem
+                 Version: Vault v1.14.0, built 2023-06-19T11:40:23Z
+             Version Sha: 13a649f860186dffe3f3a4459814d87191efc321
+
+==> Vault server started! Log data will stream in below:
+
+2023-06-30T11:13:15.298Z [INFO]  proxy environment: http_proxy="" https_proxy="" no_proxy=""
+2023-06-30T11:13:15.301Z [WARN]  no `api_addr` value specified in config or in VAULT_API_ADDR; falling back to detection if possible, but thihould be manually set
+2023-06-30T11:13:15.309Z [INFO]  core: Initializing version history cache for core
+2023-06-30T11:13:15.315Z [INFO]  core: security barrier not initialized
+2023-06-30T11:13:15.315Z [INFO]  core: security barrier initialized: stored=1 shares=1 threshold=1
+2023-06-30T11:13:15.317Z [INFO]  core: post-unseal setup starting
+2023-06-30T11:13:15.336Z [INFO]  core: loaded wrapping token key
+2023-06-30T11:13:15.337Z [INFO]  core: successfully setup plugin catalog: plugin-directory=""
+2023-06-30T11:13:15.337Z [INFO]  core: no mounts; adding default mount table
+2023-06-30T11:13:15.341Z [INFO]  core: successfully mounted: type=cubbyhole version="v1.14.0+builtin.vault" path=cubbyhole/ namespace="ID: ro "
+2023-06-30T11:13:15.345Z [INFO]  core: successfully mounted: type=system version="v1.14.0+builtin.vault" path=sys/ namespace="ID: root. Path:
+2023-06-30T11:13:15.349Z [INFO]  core: successfully mounted: type=identity version="v1.14.0+builtin.vault" path=identity/ namespace="ID: root
+2023-06-30T11:13:15.354Z [INFO]  core: successfully mounted: type=token version="v1.14.0+builtin.vault" path=token/ namespace="ID: root. Path
+2023-06-30T11:13:15.359Z [INFO]  core: restoring leases
+2023-06-30T11:13:15.362Z [INFO]  rollback: starting rollback manager
+2023-06-30T11:13:15.371Z [INFO]  expiration: lease restore complete
+2023-06-30T11:13:15.371Z [INFO]  identity: entities restored
+2023-06-30T11:13:15.371Z [INFO]  identity: groups restored
+2023-06-30T11:13:15.372Z [INFO]  core: Recorded vault version: vault version=1.14.0 upgrade time="2023-06-30 11:13:15.372653284 +0000 UTC" bu2023-06-19T11:40:23Z
+2023-06-30T11:13:16.272Z [INFO]  core: post-unseal setup complete
+2023-06-30T11:13:16.272Z [INFO]  core: root token generated
+2023-06-30T11:13:16.272Z [INFO]  core: pre-seal teardown starting
+2023-06-30T11:13:16.274Z [INFO]  rollback: stopping rollback manager
+2023-06-30T11:13:16.274Z [INFO]  core: pre-seal teardown complete
+2023-06-30T11:13:16.274Z [INFO]  core.cluster-listener.tcp: starting listener: listener_address=127.0.0.1:8201
+2023-06-30T11:13:16.274Z [INFO]  core.cluster-listener: serving cluster requests: cluster_listen_address=127.0.0.1:8201
+2023-06-30T11:13:16.276Z [INFO]  core: post-unseal setup starting
+2023-06-30T11:13:16.276Z [INFO]  core: loaded wrapping token key
+2023-06-30T11:13:16.276Z [INFO]  core: successfully setup plugin catalog: plugin-directory=""
+2023-06-30T11:13:16.277Z [INFO]  core: successfully mounted: type=system version="v1.14.0+builtin.vault" path=sys/ namespace="ID: root. Path:
+2023-06-30T11:13:16.277Z [INFO]  core: successfully mounted: type=identity version="v1.14.0+builtin.vault" path=identity/ namespace="ID: root
+2023-06-30T11:13:16.277Z [INFO]  core: successfully mounted: type=cubbyhole version="v1.14.0+builtin.vault" path=cubbyhole/ namespace="ID: ro "
+2023-06-30T11:13:16.278Z [INFO]  core: successfully mounted: type=token version="v1.14.0+builtin.vault" path=token/ namespace="ID: root. Path
+2023-06-30T11:13:16.279Z [INFO]  core: restoring leases
+2023-06-30T11:13:16.279Z [INFO]  expiration: lease restore complete
+2023-06-30T11:13:16.279Z [INFO]  rollback: starting rollback manager
+2023-06-30T11:13:16.279Z [INFO]  identity: entities restored
+2023-06-30T11:13:16.279Z [INFO]  identity: groups restored
+2023-06-30T11:13:16.280Z [INFO]  core: post-unseal setup complete
+2023-06-30T11:13:16.280Z [INFO]  core: vault is unsealed
+2023-06-30T11:13:16.292Z [INFO]  core: successful mount: namespace="" path=secret/ type=kv version=""
+WARNING! dev mode is enabled! In this mode, Vault runs entirely in-memory
+and starts unsealed with a single unseal key. The root token is already
+authenticated to the CLI, so you can immediately begin using Vault.
+
+You may need to set the following environment variables:
+
+    $ export VAULT_ADDR='http://127.0.0.1:8200'
+
+The unseal key and root token are displayed below in case you want to
+seal/unseal the Vault or re-authenticate.
+
+Unseal Key: LGoE8HBJ0Tnd6W0jJjizXbVKRbMc48eO/GqCQq80zYA=
+Root Token: hvs.5dBTEUlfYndp32PYnxJDNkLo
+
+Development mode should NOT be used in production installations!
+
+
+========================================================================================
+vault server -dev
+
+export VAULT_ADDR="http://127.0.0.1:8200"
+vault secrets enable -path=secrets kv-v2
+
+============================================
+vault kv put secret/aws_credential access_key=AKIA4ID7ACTJ2NLLIRES secret_key=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
+
+root@ip-172-31-64-249:/aws# vault kv get secret/aws_credential
+======= Secret Path =======
+secret/data/aws_credential
+
+======= Metadata =======
+Key                Value
+---                -----
+created_time       2023-06-30T11:42:50.405740249Z
+custom_metadata    <nil>
+deletion_time      n/a
+destroyed          false
+version            1
+
+======= Data =======
+Key           Value
+---           -----
+access_key    AKIA4ID7ACTJ2NLLIRES
+secret_key    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
+root@ip-172-31-64-249:/aws#
+
+=========================================================================
+ vault kv get secret/aws_credential
+===============================================
+provider "vault" {
+  address = "http://127.0.0.1:8200"
+}
+data "vault_generic_secret" "aws_credentials" {
+  path = "secret/aws_credentials"
+}
+provider "aws" {
+  access_key    = data.vault_generic_secret.aws_credentials.data["access_key"]
+  secret_key    = data.vault_generic_secret.aws_credentials.data["secret_key"]
+  region        = "us-west-1"  # Replace with your desired AWS region
+}
+==================================================================
+
+root@ip-172-31-64-249:/aws# cat main.tf
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+
+}
+provider "vault" {
+  address = "http://127.0.0.1:8200"
+}
+data "vault_generic_secret" "aws_credentials" {
+  path = "secret/aws_credentials"
+}
+provider "aws" {
+  access_key    = data.vault_generic_secret.aws_credentials.data["access_key"]
+  secret_key    = data.vault_generic_secret.aws_credentials.data["secret_key"]
+  region        = "us-west-1"  # Replace with your desired AWS region
+}
+/*
+provider "aws" {
+   profile = "profile2"
+   region = "us-west-1"
+
+}
+
+provider "aws" {
+  access_key = var.provide.access_key
+  secret_key = var.provide.secret_key
+  region     = "us-west-1"
+}
+*/
+resource "aws_instance" "example" {
+  ami           = "ami-0dc50976db563e50a"
+  instance_type = "t3.medium"
+  subnet_id     = "subnet-0536db43230a88608" # Replace with your desired subnet ID
+  key_name      = "Satheeshkumar-aws1"       # Replace with your desired key pair name
+        tags = {
+                Name = "satheesh-aws"
+                Environment = "Production"
+}
+}
+root@ip-172-31-64-249:/aws#
+====================================================================
+
+aws s3 rm s3://<S3 bucket name> --recursive
+
+=================================================================
+
+terraform apply -target=resources
+terraform apply -refresh=false
+==========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
